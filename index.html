@@ -206,6 +206,14 @@
     .heatmap-square { width: 12px; height: 12px; border-radius: 3px; transition: all 0.2s ease; }
     .vision-item { touch-action: none; user-select: none; }
   </style>
+  <link rel="manifest" href="./manifest.json">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+  }
+</script>
 </head>
 <body class="min-h-screen flex flex-col transition-colors duration-200 pb-16 lg:pb-0">
 
