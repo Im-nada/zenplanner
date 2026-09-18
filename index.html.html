@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="nuit-violette">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ZenPlanner Pro v2.4 - Multi-Device & Responsive</title>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            app: {
+              bg: 'var(--bg-main)',
+              card: 'var(--bg-card)',
+              border: 'var(--border-color)',
+              primary: 'var(--text-primary)',
+              secondary: 'var(--text-secondary)',
+              accent: 'var(--accent-primary)',
+              hover: 'var(--accent-hover)',
+              light: 'var(--accent-light)',
+              glow: 'var(--accent-glow)',
+              badge: 'var(--badge-bg)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    [data-theme="nuit-violette"], :root {
+      --bg-main: #09090b;
+      --bg-card: #18181b;
+      --border-color: #27272a;
+      --text-primary: #f4f4f5;
+      --text-secondary: #a1a1aa;
+      --accent-primary: #8b5cf6;
+      --accent-hover: #7c3aed;
+      --accent-light: rgba(139, 92, 246, 0.15);
+      --accent-glow: rgba(139, 92, 246, 0.35);
+      --badge-bg: rgba(139, 92, 246, 0.2);
+    }
+
+    [data-theme="aurore-claire"] {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-primary: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-light: rgba(99, 102, 241, 0.12);
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --badge-bg: rgba(99, 102, 241, 0.15);
+    }
+
+    [data-theme="foret"] {
+      --bg-main: #0f1712;
+      --bg-card: #1a2620;
+      --border-color: #2d3d32;
+      --text-primary: #f0fdf4;
+      --text-secondary: #86efac;
+      --accent-primary: #22c55e;
+      --accent-hover: #16a34a;
+      --accent-light: rgba(34, 197, 94, 0.15);
+      --accent-glow: rgba(34, 197, 94, 0.35);
+      --badge-bg: rgba(34, 197, 94, 0.2);
+    }
+
+    [data-theme="ocean"] {
+      --bg-main: #071a26;
+      --bg-card: #0f2c3f;
+      --border-color: #1e4258;
+      --text-primary: #ecfeff;
+      --text-secondary: #67e8f9;
+      --accent-primary: #06b6d4;
+      --accent-hover: #0891b2;
+      --accent-light: rgba(6, 182, 212, 0.15);
+      --accent-glow: rgba(6, 182, 212, 0.35);
+      --badge-bg: rgba(6, 182, 212, 0.2);
+    }
+
+    [data-theme="coucher-soleil"] {
+      --bg-main: #fff7ed;
+      --bg-card: #ffffff;
+      --border-color: #fed7aa;
+      --text-primary: #431407;
+      --text-secondary: #9a3412;
+      --accent-primary: #f97316;
+      --accent-hover: #ea580c;
+      --accent-light: rgba(249, 115, 22, 0.12);
+      --accent-glow: rgba(249, 115, 22, 0.25);
+      --badge-bg: rgba(249, 115, 22, 0.15);
+    }
+
+    [data-theme="neon-cyberpunk"] {
+      --bg-main: #000000;
+      --bg-card: #0d0d12;
+      --border-color: #1f1f2e;
+      --text-primary: #ffffff;
+      --text-secondary: #f472b6;
+      --accent-primary: #ec4899;
+      --accent-hover: #db2777;
+      --accent-light: rgba(236, 72, 153, 0.2);
+      --accent-glow: rgba(236, 72, 153, 0.45);
+      --badge-bg: rgba(236, 72, 153, 0.25);
+    }
+
+    [data-theme="pop-bonbon"] {
+      --bg-main: #fef1f8;
+      --bg-card: #ffffff;
+      --border-color: #fbcfe8;
+      --text-primary: #831843;
+      --text-secondary: #be185d;
+      --accent-primary: #ec4899;
+      --accent-hover: #db2777;
+      --accent-light: rgba(236, 72, 153, 0.12);
+      --accent-glow: rgba(236, 72, 153, 0.25);
+      --badge-bg: rgba(236, 72, 153, 0.15);
+    }
+
+    [data-theme="pop-electrique"] {
+      --bg-main: #0a0e0a;
+      --bg-card: #131a13;
+      --border-color: #1f2e1f;
+      --text-primary: #f7fee7;
+      --text-secondary: #bef264;
+      --accent-primary: #a3e635;
+      --accent-hover: #84cc16;
+      --accent-light: rgba(163, 230, 53, 0.2);
+      --accent-glow: rgba(163, 230, 53, 0.4);
+      --badge-bg: rgba(163, 230, 53, 0.25);
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* RTL Overrides */
+    [dir="rtl"] {
+      text-align: right;
+    }
+    [dir="rtl"] .font-mono {
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .theme-card {
+      background-color: var(--bg-card);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .theme-border {
+      border-color: var(--border-color);
+    }
+
+    .theme-text-muted {
+      color: var(--text-secondary);
+    }
+
+    .theme-accent-bg {
+      background-color: var(--accent-primary);
+      color: #ffffff;
+    }
+    [data-theme="pop-electrique"] .theme-accent-bg {
+      color: #000000;
+    }
+
+    .theme-accent-text {
+      color: var(--accent-primary);
+    }
+
+    .theme-accent-border {
+      border-color: var(--accent-primary);
+    }
+
+    .theme-accent-light {
+      background-color: var(--accent-light);
+      color: var(--accent-primary);
+    }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 9999px; }
+
+    .heatmap-square { width: 12px; height: 12px; border-radius: 3px; transition: all 0.2s ease; }
+    .vision-item { touch-action: none; user-select: none; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col transition-colors duration-200 pb-16 lg:pb-0">
+
+  <!-- TOP HEADER -->
+  <header class="h-16 border-b theme-border theme-card sticky top-0 z-30 px-3 sm:px-4 flex items-center justify-between backdrop-blur-md bg-opacity-90">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl theme-accent-bg flex items-center justify-center font-extrabold text-base sm:text-lg shadow-lg">Z</div>
+      <span class="font-bold text-base sm:text-lg tracking-tight">ZenPlanner <span class="text-[10px] sm:text-xs px-2 py-0.5 rounded-full theme-accent-light border border-app-accent/20 font-medium">v2.4</span></span>
+    </div>
+
+    <div class="flex items-center gap-1.5 sm:gap-3">
+      <button onclick="openSearchModal()" class="flex items-center gap-2 text-xs theme-text-muted bg-app-bg hover:opacity-80 px-2.5 py-1.5 rounded-xl transition border theme-border">
+        <i data-lucide="search" class="w-4 h-4"></i>
+        <span class="hidden md:inline" data-i18n="searchPlaceholder">Rechercher...</span>
+        <kbd class="hidden md:inline text-[10px] theme-card px-1.5 py-0.5 rounded border theme-border font-mono">⌘K</kbd>
+      </button>
+
+      <div id="offlineIndicator" class="hidden sm:flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span data-i18n="offlineMode">100% Hors-ligne</span>
+      </div>
+
+      <!-- SELECTEUR DE LANGUE -->
+      <select id="langSelect" onchange="switchLanguage(this.value)" class="text-xs theme-card border theme-border rounded-xl px-2 py-1.5 focus:outline-none font-medium cursor-pointer">
+        <option value="fr">🇫🇷</option>
+        <option value="en">🇬🇧</option>
+        <option value="es">🇪🇸</option>
+        <option value="ar">🇸🇦</option>
+      </select>
+
+      <!-- SELECTEUR DE THEME AMBIANT -->
+      <select id="themeSelect" onchange="switchTheme(this.value)" class="text-xs theme-card border theme-border rounded-xl px-2 py-1.5 focus:outline-none font-medium cursor-pointer max-w-[110px] sm:max-w-none truncate">
+        <option value="nuit-violette">🌙 Nuit Violette</option>
+        <option value="aurore-claire">☀️ Aurore Claire</option>
+        <option value="foret">🌲 Forêt Cosy</option>
+        <option value="ocean">🌊 Océan Profond</option>
+        <option value="coucher-soleil">🌅 Coucher de Soleil</option>
+        <option value="neon-cyberpunk">⚡ Néon Cyberpunk</option>
+        <option value="pop-bonbon">🍬 Pop Bonbon</option>
+        <option value="pop-electrique">🔋 Pop Électrique</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="flex flex-1 overflow-hidden relative">
+    <!-- SIDEBAR NAV (DESKTOP / TABLET LANDSCAPE) -->
+    <aside class="hidden lg:flex w-60 border-r border-l-0 [dir=rtl]:border-l [dir=rtl]:border-r-0 theme-border theme-card flex-col justify-between p-3 select-none">
+      <nav class="space-y-1">
+        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+          <span data-i18n="navDashboard">Dashboard</span>
+        </button>
+        <button onclick="switchTab('agenda')" id="nav-agenda" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="calendar" class="w-5 h-5"></i>
+          <span data-i18n="navAgenda">Agenda</span>
+        </button>
+        <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="check-square" class="w-5 h-5"></i>
+          <span data-i18n="navTasks">Tâches & Checklist</span>
+        </button>
+        <button onclick="switchTab('eisenhower')" id="nav-eisenhower" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="grid" class="w-5 h-5"></i>
+          <span data-i18n="navEisenhower">Eisenhower</span>
+        </button>
+        <button onclick="switchTab('goals')" id="nav-goals" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="target" class="w-5 h-5"></i>
+          <span data-i18n="navGoals">Objectifs</span>
+        </button>
+        <button onclick="switchTab('habits')" id="nav-habits" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="activity" class="w-5 h-5"></i>
+          <span data-i18n="navHabits">Habitudes</span>
+        </button>
+        <button onclick="switchTab('pomodoro')" id="nav-pomodoro" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="timer" class="w-5 h-5"></i>
+          <span data-i18n="navPomodoro">Pomodoro</span>
+        </button>
+        <button onclick="switchTab('vision')" id="nav-vision" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="image" class="w-5 h-5"></i>
+          <span data-i18n="navVision">Vision Board</span>
+        </button>
+        <button onclick="switchTab('stats')" id="nav-stats" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+          <span data-i18n="navStats">Statistiques</span>
+        </button>
+      </nav>
+
+      <div class="space-y-1 pt-4 border-t theme-border">
+        <button onclick="switchTab('settings')" id="nav-settings" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition">
+          <i data-lucide="settings" class="w-5 h-5"></i>
+          <span data-i18n="navSettings">Réglages & Backup</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MOBILE & TABLET BOTTOM BAR NAVIGATION -->
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 theme-card border-t theme-border z-40 flex items-center justify-around px-2 backdrop-blur-lg bg-opacity-95">
+      <button onclick="switchTab('dashboard')" id="bnav-dashboard" class="bnav-btn flex flex-col items-center justify-center w-14 h-12 rounded-xl text-xs font-medium transition">
+        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-0.5" data-i18n="navDashboard">Dash</span>
+      </button>
+      <button onclick="switchTab('agenda')" id="bnav-agenda" class="bnav-btn flex flex-col items-center justify-center w-14 h-12 rounded-xl text-xs font-medium transition">
+        <i data-lucide="calendar" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-0.5" data-i18n="navAgenda">Agenda</span>
+      </button>
+      <button onclick="switchTab('tasks')" id="bnav-tasks" class="bnav-btn flex flex-col items-center justify-center w-14 h-12 rounded-xl text-xs font-medium transition">
+        <i data-lucide="check-square" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-0.5" data-i18n="navTasks">Tâches</span>
+      </button>
+      <button onclick="switchTab('pomodoro')" id="bnav-pomodoro" class="bnav-btn flex flex-col items-center justify-center w-14 h-12 rounded-xl text-xs font-medium transition">
+        <i data-lucide="timer" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-0.5" data-i18n="navPomodoro">Pomo</span>
+      </button>
+      <button onclick="toggleMobileDrawer()" class="flex flex-col items-center justify-center w-14 h-12 rounded-xl text-xs font-medium theme-text-muted hover:opacity-80 transition">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-0.5">Plus</span>
+      </button>
+    </nav>
+
+    <!-- MOBILE OFF-CANVAS DRAWER -->
+    <div id="mobile-drawer" class="lg:hidden fixed inset-0 z-50 hidden">
+      <div onclick="toggleMobileDrawer()" class="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
+      <div class="absolute bottom-16 left-0 right-0 theme-card border-t theme-border p-4 rounded-t-3xl shadow-2xl space-y-2 max-h-[70vh] overflow-y-auto">
+        <div class="w-12 h-1 bg-app-border rounded-full mx-auto mb-3"></div>
+        <div class="grid grid-cols-2 gap-2 text-xs font-medium">
+          <button onclick="switchTab('eisenhower'); toggleMobileDrawer();" class="p-3 bg-app-bg rounded-xl border theme-border flex items-center gap-2.5">
+            <i data-lucide="grid" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="navEisenhower">Eisenhower</span>
+          </button>
+          <button onclick="switchTab('goals'); toggleMobileDrawer();" class="p-3 bg-app-bg rounded-xl border theme-border flex items-center gap-2.5">
+            <i data-lucide="target" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="navGoals">Objectifs</span>
+          </button>
+          <button onclick="switchTab('habits'); toggleMobileDrawer();" class="p-3 bg-app-bg rounded-xl border theme-border flex items-center gap-2.5">
+            <i data-lucide="activity" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="navHabits">Habitudes</span>
+          </button>
+          <button onclick="switchTab('vision'); toggleMobileDrawer();" class="p-3 bg-app-bg rounded-xl border theme-border flex items-center gap-2.5">
+            <i data-lucide="image" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="navVision">Vision Board</span>
+          </button>
+          <button onclick="switchTab('stats'); toggleMobileDrawer();" class="p-3 bg-app-bg rounded-xl border theme-border flex items-center gap-2.5">
+            <i data-lucide="bar-chart-3" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="navStats">Statistiques</span>
+          </button>
+          <button onclick="switchTab('settings'); toggleMobileDrawer();" class="p-3 bg-app-bg rounded-xl border theme-border flex items-center gap-2.5">
+            <i data-lucide="settings" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="navSettings">Réglages</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN VIEW AREA -->
+    <main class="flex-1 overflow-y-auto p-3 sm:p-5 md:p-6 relative">
+      
+      <!-- VIEW: DASHBOARD -->
+      <section id="view-dashboard" class="tab-content space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight" data-i18n="welcomeGreeting">Bonjour, prêt pour aujourd'hui ? 👋</h1>
+            <p id="dash-date" class="text-xs sm:text-sm theme-text-muted mt-0.5"></p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="openModal('modal-event')" class="theme-accent-bg hover:opacity-90 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition shadow-sm flex items-center gap-1.5">
+              <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="addEvent">Événement</span>
+            </button>
+            <button onclick="openModal('modal-task')" class="theme-card border theme-border hover:bg-app-bg px-3 py-2 rounded-xl text-xs sm:text-sm font-medium transition shadow-sm flex items-center gap-1.5">
+              <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="addTask">Tâche</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div class="p-3.5 sm:p-4 rounded-2xl theme-card border theme-border flex items-center gap-3">
+            <div class="p-2.5 rounded-xl theme-accent-light"><i data-lucide="check-circle-2" class="w-5 h-5 sm:w-6 sm:h-6"></i></div>
+            <div>
+              <p class="text-[11px] sm:text-xs theme-text-muted font-medium" data-i18n="tasksToday">Tâches Aujourd'hui</p>
+              <h3 id="dash-task-count" class="text-base sm:text-xl font-bold mt-0.5 font-mono">0 / 0</h3>
+            </div>
+          </div>
+          <div class="p-3.5 sm:p-4 rounded-2xl theme-card border theme-border flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-500"><i data-lucide="calendar" class="w-5 h-5 sm:w-6 sm:h-6"></i></div>
+            <div>
+              <p class="text-[11px] sm:text-xs theme-text-muted font-medium" data-i18n="eventsToday">Événements du Jour</p>
+              <h3 id="dash-event-count" class="text-base sm:text-xl font-bold mt-0.5 font-mono">0</h3>
+            </div>
+          </div>
+          <div class="p-3.5 sm:p-4 rounded-2xl theme-card border theme-border flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-500"><i data-lucide="flame" class="w-5 h-5 sm:w-6 sm:h-6"></i></div>
+            <div>
+              <p class="text-[11px] sm:text-xs theme-text-muted font-medium" data-i18n="habitsTracked">Habitudes Suivies</p>
+              <h3 id="dash-habit-streak" class="text-base sm:text-xl font-bold mt-0.5 font-mono">0</h3>
+            </div>
+          </div>
+          <div class="p-3.5 sm:p-4 rounded-2xl theme-card border theme-border flex items-center gap-3">
+            <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-500"><i data-lucide="target" class="w-5 h-5 sm:w-6 sm:h-6"></i></div>
+            <div>
+              <p class="text-[11px] sm:text-xs theme-text-muted font-medium" data-i18n="activeGoals">Objectifs Actifs</p>
+              <h3 id="dash-goal-count" class="text-base sm:text-xl font-bold mt-0.5 font-mono">0</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div class="lg:col-span-2 p-4 sm:p-5 rounded-2xl theme-card border theme-border space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-sm sm:text-base flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="todaySchedule">Planning du Jour</span></h3>
+              <button onclick="switchTab('agenda')" class="text-xs theme-accent-text font-medium hover:underline"><span data-i18n="viewAgenda">Voir l'agenda</span> &rarr;</button>
+            </div>
+            <div id="dash-today-events" class="space-y-2 min-h-[140px]"></div>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl theme-card border theme-border space-y-4 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="font-semibold text-sm sm:text-base flex items-center gap-2"><i data-lucide="timer" class="w-4 h-4 theme-accent-text"></i> <span data-i18n="focusTimer">Minuteur Focus</span></h3>
+                <span id="dash-pomo-status" class="text-xs font-medium px-2.5 py-1 rounded-full theme-accent-light" data-i18n="pomoReady">Prêt</span>
+              </div>
+              <div class="my-5 text-center">
+                <div id="dash-pomo-timer" class="text-4xl sm:text-5xl font-extrabold tracking-tight font-mono theme-accent-text">25:00</div>
+                <p id="dash-pomo-label" class="text-xs theme-text-muted mt-1 font-medium" data-i18n="pomoWork">Session de Travail</p>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button id="dash-pomo-btn" onclick="togglePomodoro()" class="flex-1 py-2.5 theme-accent-bg rounded-xl text-xs sm:text-sm font-semibold hover:opacity-90 transition" data-i18n="start">Démarrer</button>
+              <button onclick="resetPomodoro()" class="p-2.5 theme-card border theme-border rounded-xl theme-text-muted hover:bg-app-bg transition"><i data-lucide="rotate-ccw" class="w-4 h-4"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: AGENDA -->
+      <section id="view-agenda" class="tab-content hidden space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 theme-card p-3 sm:p-4 rounded-2xl border theme-border">
+          <div class="flex items-center justify-between sm:justify-start gap-2">
+            <button onclick="navigateAgenda(-1)" class="p-2 rounded-lg border theme-border hover:bg-app-bg"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+            <h2 id="agenda-title" class="font-bold text-sm sm:text-base min-w-[140px] text-center">Semaine</h2>
+            <button onclick="navigateAgenda(1)" class="p-2 rounded-lg border theme-border hover:bg-app-bg"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+            <button onclick="setAgendaToday()" class="text-xs font-medium px-2.5 py-1.5 rounded-lg border theme-border hover:bg-app-bg" data-i18n="today">Aujourd'hui</button>
+          </div>
+          
+          <div class="flex items-center justify-between sm:justify-end gap-2">
+            <div class="flex bg-app-bg p-1 rounded-xl text-xs font-medium border theme-border">
+              <button onclick="setAgendaView('day')" id="view-btn-day" class="px-2.5 py-1 rounded-lg transition" data-i18n="viewDay">Jour</button>
+              <button onclick="setAgendaView('week')" id="view-btn-week" class="px-2.5 py-1 rounded-lg transition theme-card shadow-xs" data-i18n="viewWeek">Semaine</button>
+              <button onclick="setAgendaView('month')" id="view-btn-month" class="px-2.5 py-1 rounded-lg transition" data-i18n="viewMonth">Mois</button>
+            </div>
+            <button onclick="openModal('modal-event')" class="theme-accent-bg px-3 py-1.5 rounded-xl text-xs font-medium hover:opacity-90 transition flex items-center gap-1">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> <span data-i18n="addEvent">Événement</span>
+            </button>
+          </div>
+        </div>
+        <div id="agenda-container" class="theme-card rounded-2xl border theme-border overflow-x-auto min-h-[450px]"></div>
+      </section>
+
+      <!-- VIEW: TASKS -->
+      <section id="view-tasks" class="tab-content hidden space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <h2 class="text-lg sm:text-xl font-bold tracking-tight" data-i18n="taskManagement">Gestion des Tâches & Sous-tâches</h2>
+          <button onclick="openModal('modal-task')" class="theme-accent-bg px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium hover:opacity-90 transition flex items-center gap-2 self-start sm:self-auto">
+            <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="newTask">Nouvelle Tâche</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 theme-card p-3 rounded-2xl border theme-border text-xs">
+          <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0">
+            <button onclick="filterTasks('all')" class="task-filter-btn px-3 py-1.5 rounded-lg theme-accent-bg font-medium whitespace-nowrap" data-i18n="allTasks">Toutes</button>
+            <button onclick="filterTasks('today')" class="task-filter-btn px-3 py-1.5 rounded-lg theme-text-muted hover:bg-app-bg font-medium whitespace-nowrap" data-i18n="filterToday">Aujourd'hui</button>
+            <button onclick="filterTasks('pending')" class="task-filter-btn px-3 py-1.5 rounded-lg theme-text-muted hover:bg-app-bg font-medium whitespace-nowrap" data-i18n="filterPending">En cours</button>
+            <button onclick="filterTasks('completed')" class="task-filter-btn px-3 py-1.5 rounded-lg theme-text-muted hover:bg-app-bg font-medium whitespace-nowrap" data-i18n="filterCompleted">Terminées</button>
+          </div>
+          <select id="task-cat-filter" onchange="renderTasks()" class="bg-app-bg border theme-border rounded-lg px-2.5 py-1.5 text-xs">
+            <option value="all" data-i18n="allCategories">Toutes les catégories</option>
+          </select>
+        </div>
+
+        <div id="tasks-list" class="space-y-2"></div>
+      </section>
+
+      <!-- VIEW: EISENHOWER MATRIX -->
+      <section id="view-eisenhower" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold tracking-tight" data-i18n="eisenhowerTitle">Matrice d'Eisenhower</h2>
+            <p class="text-xs theme-text-muted" data-i18n="eisenhowerSubtitle">Priorisez par glisser-déposer ou toucher.</p>
+          </div>
+          <button onclick="openModal('modal-task')" class="theme-accent-bg px-3.5 py-2 rounded-xl text-xs font-medium hover:opacity-90 transition flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="add">Ajouter</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 min-h-[500px]">
+          <div ondragover="allowDrop(event)" ondrop="dropTask(event, 'Q1')" class="p-3.5 rounded-2xl bg-red-500/5 border border-red-500/20 flex flex-col">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="font-semibold text-xs text-red-500 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="alert-circle" class="w-4 h-4"></i> <span data-i18n="q1Title">Urgent & Important</span></span>
+              <span id="q1-count" class="text-xs font-bold text-red-500 font-mono">0</span>
+            </div>
+            <div id="matrix-q1" class="flex-1 space-y-2 overflow-y-auto"></div>
+          </div>
+
+          <div ondragover="allowDrop(event)" ondrop="dropTask(event, 'Q2')" class="p-3.5 rounded-2xl bg-blue-500/5 border border-blue-500/20 flex flex-col">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="font-semibold text-xs text-blue-500 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="calendar" class="w-4 h-4"></i> <span data-i18n="q2Title">Important / Non Urgent</span></span>
+              <span id="q2-count" class="text-xs font-bold text-blue-500 font-mono">0</span>
+            </div>
+            <div id="matrix-q2" class="flex-1 space-y-2 overflow-y-auto"></div>
+          </div>
+
+          <div ondragover="allowDrop(event)" ondrop="dropTask(event, 'Q3')" class="p-3.5 rounded-2xl bg-amber-500/5 border border-amber-500/20 flex flex-col">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="font-semibold text-xs text-amber-500 uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="user-check" class="w-4 h-4"></i> <span data-i18n="q3Title">Urgent / Non Important</span></span>
+              <span id="q3-count" class="text-xs font-bold text-amber-500 font-mono">0</span>
+            </div>
+            <div id="matrix-q3" class="flex-1 space-y-2 overflow-y-auto"></div>
+          </div>
+
+          <div ondragover="allowDrop(event)" ondrop="dropTask(event, 'Q4')" class="p-3.5 rounded-2xl bg-gray-500/5 border border-gray-500/20 flex flex-col">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="font-semibold text-xs theme-text-muted uppercase tracking-wider flex items-center gap-1.5"><i data-lucide="trash-2" class="w-4 h-4"></i> <span data-i18n="q4Title">Ni Urgent / Ni Important</span></span>
+              <span id="q4-count" class="text-xs font-bold theme-text-muted font-mono">0</span>
+            </div>
+            <div id="matrix-q4" class="flex-1 space-y-2 overflow-y-auto"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: GOALS -->
+      <section id="view-goals" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold tracking-tight" data-i18n="monthlyGoals">Objectifs Mensuels</h2>
+            <p class="text-xs theme-text-muted" data-i18n="goalsSubtitle">Liez des cibles à vos résultats.</p>
+          </div>
+          <button onclick="openModal('modal-goal')" class="theme-accent-bg px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium hover:opacity-90 transition flex items-center gap-2">
+            <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="newGoal">Nouvel Objectif</span>
+          </button>
+        </div>
+        <div id="goals-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </section>
+
+      <!-- VIEW: HABITS -->
+      <section id="view-habits" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold tracking-tight" data-i18n="habitTracker">Suivi d'Habitudes</h2>
+            <p class="text-xs theme-text-muted" data-i18n="habitsSubtitle">Grille Heatmap 30 jours.</p>
+          </div>
+          <button onclick="openModal('modal-habit')" class="theme-accent-bg px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium hover:opacity-90 transition flex items-center gap-2">
+            <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="newHabit">Nouvelle Habitude</span>
+          </button>
+        </div>
+        <div id="habits-list" class="space-y-4"></div>
+      </section>
+
+      <!-- VIEW: POMODORO -->
+      <section id="view-pomodoro" class="tab-content hidden space-y-6">
+        <div class="max-w-xl mx-auto text-center space-y-6 pt-4 sm:pt-6">
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight" data-i18n="pomodoroTimer">Minuteur Pomodoro</h2>
+          <div class="theme-card p-6 sm:p-8 rounded-3xl border theme-border shadow-xl space-y-6">
+            <div class="flex flex-wrap justify-center gap-2">
+              <button onclick="setPomoMode('work')" id="pomo-mode-work" class="px-3.5 py-2 rounded-xl text-xs font-semibold theme-accent-bg transition" data-i18n="pomoModeWork">Travail (25m)</button>
+              <button onclick="setPomoMode('shortBreak')" id="pomo-mode-short" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-app-bg border theme-border theme-text-muted transition" data-i18n="pomoModeShort">Pause Courte (5m)</button>
+              <button onclick="setPomoMode('longBreak')" id="pomo-mode-long" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-app-bg border theme-border theme-text-muted transition" data-i18n="pomoModeLong">Pause Longue (15m)</button>
+            </div>
+
+            <div class="py-4 sm:py-6">
+              <div id="main-pomo-timer" class="text-5xl sm:text-7xl font-extrabold tracking-tight font-mono theme-accent-text">25:00</div>
+              <p id="main-pomo-label" class="text-xs sm:text-sm theme-text-muted mt-2 font-medium" data-i18n="pomoWork">Session de Concentration</p>
+            </div>
+
+            <div class="flex justify-center gap-3">
+              <button id="main-pomo-start-btn" onclick="togglePomodoro()" class="px-6 sm:px-8 py-3 theme-accent-bg rounded-2xl font-bold hover:opacity-90 transition shadow-lg flex items-center gap-2 text-sm sm:text-base">
+                <i data-lucide="play" class="w-5 h-5"></i> <span data-i18n="start">Démarrer</span>
+              </button>
+              <button onclick="resetPomodoro()" class="p-3 theme-card border theme-border rounded-2xl theme-text-muted hover:bg-app-bg transition">
+                <i data-lucide="rotate-ccw" class="w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: VISION BOARD -->
+      <section id="view-vision" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold tracking-tight" data-i18n="visionBoardTitle">Vision Board Interactive</h2>
+            <p class="text-xs theme-text-muted" data-i18n="visionBoardSubtitle">Positionnez vos cartes librement.</p>
+          </div>
+          <button onclick="openModal('modal-vision')" class="theme-accent-bg px-3.5 py-2 rounded-xl text-xs font-medium hover:opacity-90 transition flex items-center gap-1.5">
+            <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="addVisionCard">Carte / Image</span>
+          </button>
+        </div>
+        <div id="vision-board-canvas" class="w-full h-[calc(100vh-220px)] min-h-[450px] theme-card rounded-2xl border theme-border relative overflow-hidden"></div>
+      </section>
+
+      <!-- VIEW: STATS -->
+      <section id="view-stats" class="tab-content hidden space-y-6">
+        <h2 class="text-lg sm:text-xl font-bold tracking-tight" data-i18n="statsTitle">Statistiques & Performance</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="p-4 sm:p-5 rounded-2xl theme-card border theme-border space-y-4">
+            <h3 class="font-semibold text-xs sm:text-sm" data-i18n="taskBreakdown">Répartition des Tâches</h3>
+            <div class="flex items-center justify-center p-2 sm:p-4">
+              <svg id="stats-donut-svg" class="w-40 h-40 sm:w-48 sm:h-48" viewBox="0 0 100 100"></svg>
+            </div>
+            <div id="stats-donut-legend" class="grid grid-cols-2 gap-2 text-xs"></div>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-2xl theme-card border theme-border space-y-4">
+            <h3 class="font-semibold text-xs sm:text-sm" data-i18n="completedLast7Days">Tâches Complétées (7 Derniers Jours)</h3>
+            <div class="h-44 sm:h-48 flex items-end justify-between gap-2 pt-6 px-1 sm:px-2" id="stats-bars-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: SETTINGS -->
+      <section id="view-settings" class="tab-content hidden space-y-5 max-w-4xl">
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold tracking-tight" data-i18n="settingsTitle">Réglages & Données</h2>
+          <p class="text-xs theme-text-muted" data-i18n="settingsSubtitle">Gérez vos catégories, sauvegardes et exports.</p>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl theme-card border theme-border space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-sm sm:text-base" data-i18n="categories">Catégories</h3>
+            <button onclick="openModal('modal-category')" class="theme-accent-bg px-3 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> <span data-i18n="new">Nouvelle</span>
+            </button>
+          </div>
+          <div id="settings-categories-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1"></div>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl theme-card border theme-border space-y-4">
+          <h3 class="font-semibold text-sm sm:text-base" data-i18n="exportImport">Exportation & Importation</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <button onclick="exportData('json')" class="p-3 bg-app-bg hover:opacity-80 rounded-xl border theme-border text-xs font-semibold flex flex-col items-center gap-2">
+              <i data-lucide="file-json" class="w-5 h-5 theme-accent-text"></i> JSON
+            </button>
+            <button onclick="exportData('zen')" class="p-3 bg-app-bg hover:opacity-80 rounded-xl border theme-border text-xs font-semibold flex flex-col items-center gap-2">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-500"></i> <span data-i18n="zenFormat">Format .ZEN</span>
+            </button>
+            <button onclick="exportData('xlsx')" class="p-3 bg-app-bg hover:opacity-80 rounded-xl border theme-border text-xs font-semibold flex flex-col items-center gap-2">
+              <i data-lucide="file-spreadsheet" class="w-5 h-5 text-green-500"></i> <span data-i18n="csvExport">Export CSV</span>
+            </button>
+            <button onclick="window.print()" class="p-3 bg-app-bg hover:opacity-80 rounded-xl border theme-border text-xs font-semibold flex flex-col items-center gap-2">
+              <i data-lucide="printer" class="w-5 h-5 text-blue-500"></i> <span data-i18n="print">Imprimer</span>
+            </button>
+          </div>
+
+          <div class="pt-2 border-t theme-border flex items-center justify-between">
+            <span class="text-xs font-medium" data-i18n="importBackupLabel">Importer un fichier (.json / .zen)</span>
+            <label class="cursor-pointer theme-accent-bg px-3 py-1.5 rounded-xl text-xs font-medium hover:opacity-90 transition">
+              <span data-i18n="browse">Parcourir...</span>
+              <input type="file" id="importFileInput" onchange="importData(event)" class="hidden" accept=".json,.zen">
+            </label>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-5 rounded-2xl theme-card border theme-border space-y-4">
+          <h3 class="font-semibold text-sm sm:text-base" data-i18n="autoBackupsTitle">Sauvegardes Automatiques SHA-256</h3>
+          <div id="settings-backups-list" class="space-y-2 text-xs"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- MODAL: TASK -->
+  <div id="modal-task" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="theme-card w-full max-w-md rounded-2xl p-5 sm:p-6 border theme-border space-y-4 shadow-2xl">
+      <h3 class="text-base sm:text-lg font-bold" data-i18n="newTask">Nouvelle Tâche</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium mb-1" data-i18n="title">Titre</label>
+          <input type="text" id="task-input-title" class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium mb-1" data-i18n="category">Catégorie</label>
+            <select id="task-input-category" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none"></select>
+          </div>
+          <div>
+            <label class="block font-medium mb-1" data-i18n="priority">Priorité</label>
+            <select id="task-input-priority" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none">
+              <option value="P1">P1 - Urgent & Important</option>
+              <option value="P2" selected>P2 - Important</option>
+              <option value="P3">P3 - Urgent</option>
+              <option value="P4">P4 - Basse</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium mb-1" data-i18n="dueDate">Échéance</label>
+            <input type="date" id="task-input-date" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none">
+          </div>
+          <div>
+            <label class="block font-medium mb-1" data-i18n="recurrence">Récurrence</label>
+            <select id="task-input-recurrence" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none">
+              <option value="none" data-i18n="recNone">Aucune</option>
+              <option value="daily" data-i18n="recDaily">Quotidienne</option>
+              <option value="weekly" data-i18n="recWeekly">Hebdomadaire</option>
+              <option value="monthly" data-i18n="recMonthly">Mensuelle</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium mb-1" data-i18n="subtasksLabel">Sous-tâches (une par ligne)</label>
+          <textarea id="task-input-subtasks" rows="3" placeholder="Étape 1&#10;Étape 2" class="w-full bg-app-bg border theme-border rounded-xl p-2 outline-none"></textarea>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="closeModal('modal-task')" class="px-4 py-2 rounded-xl text-xs font-medium hover:bg-app-bg" data-i18n="cancel">Annuler</button>
+        <button onclick="saveTask()" class="px-4 py-2 theme-accent-bg rounded-xl text-xs font-semibold hover:opacity-90" data-i18n="save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EVENT -->
+  <div id="modal-event" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="theme-card w-full max-w-md rounded-2xl p-5 sm:p-6 border theme-border space-y-4 shadow-2xl">
+      <h3 class="text-base sm:text-lg font-bold" data-i18n="newEvent">Nouvel Événement</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium mb-1" data-i18n="title">Titre</label>
+          <input type="text" id="event-input-title" class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium mb-1" data-i18n="date">Date</label>
+            <input type="date" id="event-input-date" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none">
+          </div>
+          <div>
+            <label class="block font-medium mb-1" data-i18n="category">Catégorie</label>
+            <select id="event-input-category" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none"></select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium mb-1" data-i18n="startTime">Début</label>
+            <input type="time" id="event-input-start" value="09:00" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none">
+          </div>
+          <div>
+            <label class="block font-medium mb-1" data-i18n="endTime">Fin</label>
+            <input type="time" id="event-input-end" value="10:00" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none">
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="closeModal('modal-event')" class="px-4 py-2 rounded-xl text-xs font-medium hover:bg-app-bg" data-i18n="cancel">Annuler</button>
+        <button onclick="saveEvent()" class="px-4 py-2 theme-accent-bg rounded-xl text-xs font-semibold hover:opacity-90" data-i18n="save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GOAL -->
+  <div id="modal-goal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="theme-card w-full max-w-md rounded-2xl p-5 sm:p-6 border theme-border space-y-4 shadow-2xl">
+      <h3 class="text-base sm:text-lg font-bold" data-i18n="newGoal">Nouvel Objectif</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium mb-1" data-i18n="title">Titre</label>
+          <input type="text" id="goal-input-title" class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium mb-1" data-i18n="target">Cible</label>
+            <input type="number" id="goal-input-target" value="10" class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+          </div>
+          <div>
+            <label class="block font-medium mb-1" data-i18n="month">Mois</label>
+            <input type="month" id="goal-input-month" class="w-full bg-app-bg border theme-border rounded-xl px-2 py-2 outline-none">
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="closeModal('modal-goal')" class="px-4 py-2 rounded-xl text-xs font-medium hover:bg-app-bg" data-i18n="cancel">Annuler</button>
+        <button onclick="saveGoal()" class="px-4 py-2 theme-accent-bg rounded-xl text-xs font-semibold hover:opacity-90" data-i18n="create">Créer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: HABIT -->
+  <div id="modal-habit" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="theme-card w-full max-w-md rounded-2xl p-5 sm:p-6 border theme-border space-y-4 shadow-2xl">
+      <h3 class="text-base sm:text-lg font-bold" data-i18n="newHabit">Nouvelle Habitude</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium mb-1" data-i18n="name">Nom</label>
+          <input type="text" id="habit-input-title" placeholder="Ex: Lire 20 min..." class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="closeModal('modal-habit')" class="px-4 py-2 rounded-xl text-xs font-medium hover:bg-app-bg" data-i18n="cancel">Annuler</button>
+        <button onclick="saveHabit()" class="px-4 py-2 theme-accent-bg rounded-xl text-xs font-semibold hover:opacity-90" data-i18n="create">Créer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: VISION -->
+  <div id="modal-vision" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="theme-card w-full max-w-md rounded-2xl p-5 sm:p-6 border theme-border space-y-4 shadow-2xl">
+      <h3 class="text-base sm:text-lg font-bold" data-i18n="addToVisionBoard">Ajouter au Vision Board</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium mb-1" data-i18n="titleNote">Titre / Note</label>
+          <input type="text" id="vision-input-title" class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+        </div>
+        <div>
+          <label class="block font-medium mb-1" data-i18n="imageUrl">URL Image (Optionnel)</label>
+          <input type="url" id="vision-input-image" placeholder="https://..." class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="closeModal('modal-vision')" class="px-4 py-2 rounded-xl text-xs font-medium hover:bg-app-bg" data-i18n="cancel">Annuler</button>
+        <button onclick="saveVisionItem()" class="px-4 py-2 theme-accent-bg rounded-xl text-xs font-semibold hover:opacity-90" data-i18n="add">Ajouter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CATEGORY -->
+  <div id="modal-category" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="theme-card w-full max-w-md rounded-2xl p-5 sm:p-6 border theme-border space-y-4 shadow-2xl">
+      <h3 class="text-base sm:text-lg font-bold" data-i18n="newCategory">Nouvelle Catégorie</h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium mb-1" data-i18n="name">Nom</label>
+          <input type="text" id="cat-input-name" class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium mb-1" data-i18n="color">Couleur</label>
+            <input type="color" id="cat-input-color" value="#8b5cf6" class="w-full h-9 bg-app-bg border theme-border rounded-xl px-1 py-1 cursor-pointer">
+          </div>
+          <div>
+            <label class="block font-medium mb-1" data-i18n="iconEmoji">Icône (Emoji)</label>
+            <input type="text" id="cat-input-icon" value="📌" class="w-full bg-app-bg border theme-border rounded-xl px-3 py-2 text-center outline-none">
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-2">
+        <button onclick="closeModal('modal-category')" class="px-4 py-2 rounded-xl text-xs font-medium hover:bg-app-bg" data-i18n="cancel">Annuler</button>
+        <button onclick="saveCategory()" class="px-4 py-2 theme-accent-bg rounded-xl text-xs font-semibold hover:opacity-90" data-i18n="save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SEARCH -->
+  <div id="modal-search" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-start justify-center pt-16 sm:pt-20 p-3 sm:p-4">
+    <div class="theme-card w-full max-w-xl rounded-2xl border theme-border overflow-hidden shadow-2xl">
+      <div class="p-3 border-b theme-border flex items-center gap-2">
+        <i data-lucide="search" class="w-5 h-5 theme-text-muted"></i>
+        <input type="text" id="global-search-input" oninput="performGlobalSearch(this.value)" placeholder="Rechercher..." class="w-full bg-transparent outline-none text-xs sm:text-sm">
+      </div>
+      <div id="global-search-results" class="max-h-80 overflow-y-auto p-2 space-y-1 text-xs"></div>
+    </div>
+  </div>
+
+  <!-- COMPLETE JAVASCRIPT ENGINE -->
+  <script>
+    const translations = {
+      fr: {
+        searchPlaceholder: "Rechercher tout...",
+        offlineMode: "100% Hors-ligne",
+        navDashboard: "Dashboard",
+        navAgenda: "Agenda",
+        navTasks: "Tâches",
+        navEisenhower: "Eisenhower",
+        navGoals: "Objectifs",
+        navHabits: "Habitudes",
+        navPomodoro: "Pomodoro",
+        navVision: "Vision Board",
+        navStats: "Statistiques",
+        navSettings: "Réglages & Backup",
+        welcomeGreeting: "Bonjour, prêt pour aujourd'hui ? 👋",
+        addEvent: "Événement",
+        addTask: "Tâche",
+        tasksToday: "Tâches Aujourd'hui",
+        eventsToday: "Événements du Jour",
+        habitsTracked: "Habitudes Suivies",
+        activeGoals: "Objectifs Actifs",
+        todaySchedule: "Planning du Jour",
+        viewAgenda: "Voir l'agenda",
+        focusTimer: "Minuteur Focus",
+        pomoReady: "Prêt",
+        pomoRunning: "En cours",
+        pomoWork: "Session de Travail",
+        pomoShort: "Pause Courte",
+        pomoLong: "Pause Longue",
+        start: "Démarrer",
+        pause: "Pause",
+        today: "Aujourd'hui",
+        viewDay: "Jour",
+        viewWeek: "Semaine",
+        viewMonth: "Mois",
+        taskManagement: "Gestion des Tâches & Sous-tâches",
+        newTask: "Nouvelle Tâche",
+        allTasks: "Toutes",
+        filterToday: "Aujourd'hui",
+        filterPending: "En cours",
+        filterCompleted: "Terminées",
+        allCategories: "Toutes les catégories",
+        eisenhowerTitle: "Matrice d'Eisenhower",
+        eisenhowerSubtitle: "Priorisez par glisser-déposer ou toucher.",
+        add: "Ajouter",
+        q1Title: "Urgent & Important",
+        q2Title: "Important / Non Urgent",
+        q3Title: "Urgent / Non Important",
+        q4Title: "Ni Urgent / Ni Important",
+        monthlyGoals: "Objectifs Mensuels",
+        goalsSubtitle: "Liez des cibles à vos résultats.",
+        newGoal: "Nouvel Objectif",
+        habitTracker: "Suivi d'Habitudes",
+        habitsSubtitle: "Grille Heatmap 30 jours.",
+        newHabit: "Nouvelle Habitude",
+        pomodoroTimer: "Minuteur Pomodoro",
+        pomoModeWork: "Travail (25m)",
+        pomoModeShort: "Pause Courte (5m)",
+        pomoModeLong: "Pause Longue (15m)",
+        visionBoardTitle: "Vision Board Interactive",
+        visionBoardSubtitle: "Positionnez vos cartes librement.",
+        addVisionCard: "Carte / Image",
+        statsTitle: "Statistiques & Performance",
+        taskBreakdown: "Répartition des Tâches",
+        completedLast7Days: "Tâches Complétées (7 Derniers Jours)",
+        settingsTitle: "Réglages & Données",
+        settingsSubtitle: "Gérez vos catégories, sauvegardes et exports.",
+        categories: "Catégories",
+        new: "Nouvelle",
+        exportImport: "Exportation & Importation",
+        zenFormat: "Format .ZEN",
+        csvExport: "Export CSV",
+        print: "Imprimer",
+        importBackupLabel: "Importer un fichier (.json / .zen)",
+        browse: "Parcourir...",
+        autoBackupsTitle: "Sauvegardes Automatiques SHA-256",
+        title: "Titre",
+        category: "Catégorie",
+        priority: "Priorité",
+        dueDate: "Échéance",
+        recurrence: "Récurrence",
+        subtasksLabel: "Sous-tâches (une par ligne)",
+        cancel: "Annuler",
+        save: "Enregistrer",
+        date: "Date",
+        startTime: "Début",
+        endTime: "Fin",
+        target: "Cible",
+        month: "Mois",
+        create: "Créer",
+        name: "Nom",
+        addToVisionBoard: "Ajouter au Vision Board",
+        titleNote: "Titre / Note",
+        imageUrl: "URL Image (Optionnel)",
+        newCategory: "Nouvelle Catégorie",
+        color: "Couleur",
+        iconEmoji: "Icône (Emoji)",
+        recNone: "Aucune",
+        recDaily: "Quotidienne",
+        recWeekly: "Hebdomadaire",
+        recMonthly: "Mensuelle",
+        noEventsToday: "Aucun événement prévu aujourd'hui.",
+        noTasksFound: "Aucune tâche trouvée.",
+        noGoalsFound: "Aucun objectif créé.",
+        noHabitsFound: "Aucune habitude enregistrée.",
+        emptyCanvas: "Canvas vide. Cliquez sur \"+ Carte / Image\".",
+        noData: "Aucune donnée",
+        noBackups: "Aucune sauvegarde générée.",
+        delete: "Supprimer",
+        restore: "Restaurer",
+        progress: "Progression",
+        plusOneProgress: "+1 Progrès"
+      },
+      en: {
+        searchPlaceholder: "Search everything...",
+        offlineMode: "100% Offline",
+        navDashboard: "Dashboard",
+        navAgenda: "Schedule",
+        navTasks: "Tasks",
+        navEisenhower: "Eisenhower",
+        navGoals: "Goals",
+        navHabits: "Habits",
+        navPomodoro: "Pomodoro",
+        navVision: "Vision Board",
+        navStats: "Analytics",
+        navSettings: "Settings & Backup",
+        welcomeGreeting: "Hello, ready for today? 👋",
+        addEvent: "Event",
+        addTask: "Task",
+        tasksToday: "Today's Tasks",
+        eventsToday: "Today's Events",
+        habitsTracked: "Tracked Habits",
+        activeGoals: "Active Goals",
+        todaySchedule: "Today's Schedule",
+        viewAgenda: "View agenda",
+        focusTimer: "Focus Timer",
+        pomoReady: "Ready",
+        pomoRunning: "Running",
+        pomoWork: "Work Session",
+        pomoShort: "Short Break",
+        pomoLong: "Long Break",
+        start: "Start",
+        pause: "Pause",
+        today: "Today",
+        viewDay: "Day",
+        viewWeek: "Week",
+        viewMonth: "Month",
+        taskManagement: "Task Management & Subtasks",
+        newTask: "New Task",
+        allTasks: "All",
+        filterToday: "Today",
+        filterPending: "In Progress",
+        filterCompleted: "Completed",
+        allCategories: "All categories",
+        eisenhowerTitle: "Eisenhower Matrix",
+        eisenhowerSubtitle: "Prioritize by drag & drop or tap.",
+        add: "Add",
+        q1Title: "Urgent & Important",
+        q2Title: "Important / Not Urgent",
+        q3Title: "Urgent / Not Important",
+        q4Title: "Not Urgent / Not Important",
+        monthlyGoals: "Monthly Goals",
+        goalsSubtitle: "Link targets to your results.",
+        newGoal: "New Goal",
+        habitTracker: "Habit Tracker",
+        habitsSubtitle: "30-day Heatmap Grid.",
+        newHabit: "New Habit",
+        pomodoroTimer: "Pomodoro Timer",
+        pomoModeWork: "Work (25m)",
+        pomoModeShort: "Short Break (5m)",
+        pomoModeLong: "Long Break (15m)",
+        visionBoardTitle: "Interactive Vision Board",
+        visionBoardSubtitle: "Position your cards freely.",
+        addVisionCard: "Card / Image",
+        statsTitle: "Statistics & Performance",
+        taskBreakdown: "Task Distribution",
+        completedLast7Days: "Tasks Completed (Last 7 Days)",
+        settingsTitle: "Settings & Data",
+        settingsSubtitle: "Manage your categories, backups and exports.",
+        categories: "Categories",
+        new: "New",
+        exportImport: "Export & Import",
+        zenFormat: ".ZEN Format",
+        csvExport: "CSV Export",
+        print: "Print",
+        importBackupLabel: "Import file (.json / .zen)",
+        browse: "Browse...",
+        autoBackupsTitle: "SHA-256 Auto-Backups",
+        title: "Title",
+        category: "Category",
+        priority: "Priority",
+        dueDate: "Due Date",
+        recurrence: "Recurrence",
+        subtasksLabel: "Subtasks (one per line)",
+        cancel: "Cancel",
+        save: "Save",
+        date: "Date",
+        startTime: "Start Time",
+        endTime: "End Time",
+        target: "Target",
+        month: "Month",
+        create: "Create",
+        name: "Name",
+        addToVisionBoard: "Add to Vision Board",
+        titleNote: "Title / Note",
+        imageUrl: "Image URL (Optional)",
+        newCategory: "New Category",
+        color: "Color",
+        iconEmoji: "Icon (Emoji)",
+        recNone: "None",
+        recDaily: "Daily",
+        recWeekly: "Weekly",
+        recMonthly: "Monthly",
+        noEventsToday: "No events scheduled today.",
+        noTasksFound: "No tasks found.",
+        noGoalsFound: "No goals created.",
+        noHabitsFound: "No habits tracked.",
+        emptyCanvas: "Empty Canvas. Click \"+ Card / Image\".",
+        noData: "No data",
+        noBackups: "No backups generated.",
+        delete: "Delete",
+        restore: "Restore",
+        progress: "Progress",
+        plusOneProgress: "+1 Progress"
+      },
+      es: {
+        searchPlaceholder: "Buscar todo...",
+        offlineMode: "100% Sin conexión",
+        navDashboard: "Panel",
+        navAgenda: "Agenda",
+        navTasks: "Tareas",
+        navEisenhower: "Eisenhower",
+        navGoals: "Objetivos",
+        navHabits: "Hábitos",
+        navPomodoro: "Pomodoro",
+        navVision: "Tablero Visión",
+        navStats: "Estadísticas",
+        navSettings: "Ajustes & Copias",
+        welcomeGreeting: "¡Hola, ¿listo para hoy? 👋",
+        addEvent: "Evento",
+        addTask: "Tarea",
+        tasksToday: "Tareas de Hoy",
+        eventsToday: "Eventos de Hoy",
+        habitsTracked: "Hábitos Seguidos",
+        activeGoals: "Objetivos Activos",
+        todaySchedule: "Agenda de Hoy",
+        viewAgenda: "Ver agenda",
+        focusTimer: "Temporizador Focus",
+        pomoReady: "Listo",
+        pomoRunning: "En curso",
+        pomoWork: "Sesión de Trabajo",
+        pomoShort: "Pausa Corta",
+        pomoLong: "Pausa Larga",
+        start: "Iniciar",
+        pause: "Pausa",
+        today: "Hoy",
+        viewDay: "Día",
+        viewWeek: "Semana",
+        viewMonth: "Mes",
+        taskManagement: "Gestión de Tareas y Subtareas",
+        newTask: "Nueva Tarea",
+        allTasks: "Todas",
+        filterToday: "Hoy",
+        filterPending: "En curso",
+        filterCompleted: "Completadas",
+        allCategories: "Todas las categorías",
+        eisenhowerTitle: "Matriz de Eisenhower",
+        eisenhowerSubtitle: "Prioriza arrastrando o tocando.",
+        add: "Añadir",
+        q1Title: "Urgente e Importante",
+        q2Title: "Importante / No Urgente",
+        q3Title: "Urgente / No Importante",
+        q4Title: "Ni Urgente / Ni Importante",
+        monthlyGoals: "Objetivos Mensuales",
+        goalsSubtitle: "Vincula metas con tus resultados.",
+        newGoal: "Nuevo Objetivo",
+        habitTracker: "Seguimiento de Hábitos",
+        habitsSubtitle: "Matriz Heatmap 30 días.",
+        newHabit: "Nuevo Hábito",
+        pomodoroTimer: "Temporizador Pomodoro",
+        pomoModeWork: "Trabajo (25m)",
+        pomoModeShort: "Pausa Corta (5m)",
+        pomoModeLong: "Pausa Larga (15m)",
+        visionBoardTitle: "Tablero de Visión Interactivo",
+        visionBoardSubtitle: "Coloca tus tarjetas libremente.",
+        addVisionCard: "Tarjeta / Imagen",
+        statsTitle: "Estadísticas y Rendimiento",
+        taskBreakdown: "Distribución de Tareas",
+        completedLast7Days: "Tareas Completadas (Últimos 7 Días)",
+        settingsTitle: "Ajustes y Datos",
+        settingsSubtitle: "Gestiona tus categorías, respaldos y exportaciones.",
+        categories: "Categorías",
+        new: "Nueva",
+        exportImport: "Exportar e Importar",
+        zenFormat: "Formato .ZEN",
+        csvExport: "Exportar CSV",
+        print: "Imprimir",
+        importBackupLabel: "Importar archivo (.json / .zen)",
+        browse: "Examinar...",
+        autoBackupsTitle: "Respaldos Automáticos SHA-256",
+        title: "Título",
+        category: "Categoría",
+        priority: "Prioridad",
+        dueDate: "Vencimiento",
+        recurrence: "Recurrencia",
+        subtasksLabel: "Subtareas (una por línea)",
+        cancel: "Cancelar",
+        save: "Guardar",
+        date: "Fecha",
+        startTime: "Inicio",
+        endTime: "Fin",
+        target: "Meta",
+        month: "Mes",
+        create: "Crear",
+        name: "Nombre",
+        addToVisionBoard: "Añadir al Tablero",
+        titleNote: "Título / Nota",
+        imageUrl: "URL de Imagen (Opcional)",
+        newCategory: "Nueva Categoría",
+        color: "Color",
+        iconEmoji: "Icono (Emoji)",
+        recNone: "Ninguna",
+        recDaily: "Diaria",
+        recWeekly: "Semanal",
+        recMonthly: "Mensual",
+        noEventsToday: "No hay eventos programados hoy.",
+        noTasksFound: "No se encontraron tareas.",
+        noGoalsFound: "No hay objetivos creados.",
+        noHabitsFound: "No hay hábitos registrados.",
+        emptyCanvas: "Lienzo vacío. Haz clic en \"+ Tarjeta / Imagen\".",
+        noData: "Sin datos",
+        noBackups: "No hay respaldos generados.",
+        delete: "Eliminar",
+        restore: "Restaurar",
+        progress: "Progreso",
+        plusOneProgress: "+1 Progreso"
+      },
+      ar: {
+        searchPlaceholder: "البحث في كل شيء...",
+        offlineMode: "100% بدون اتصال",
+        navDashboard: "الرئيسية",
+        navAgenda: "الجدول",
+        navTasks: "المهام",
+        navEisenhower: "أيزنهاور",
+        navGoals: "الأهداف",
+        navHabits: "العادات",
+        navPomodoro: "بومودورو",
+        navVision: "لوحة الرؤية",
+        navStats: "الإحصائيات",
+        navSettings: "الإعدادات",
+        welcomeGreeting: "مرحبًا، هل أنت مستعد لليوم؟ 👋",
+        addEvent: "حدث جديد",
+        addTask: "مهمة جديدة",
+        tasksToday: "مهام اليوم",
+        eventsToday: "أحداث اليوم",
+        habitsTracked: "العادات المتابعة",
+        activeGoals: "الأهداف النشطة",
+        todaySchedule: "جدول اليوم",
+        viewAgenda: "عرض الجدول",
+        focusTimer: "مؤقت التركيز",
+        pomoReady: "جاهز",
+        pomoRunning: "قيد التشغيل",
+        pomoWork: "جلسة عمل",
+        pomoShort: "استراحة قصيرة",
+        pomoLong: "استراحة طويلة",
+        start: "بدء",
+        pause: "إيقاف مؤقت",
+        today: "اليوم",
+        viewDay: "يوم",
+        viewWeek: "أسبوع",
+        viewMonth: "شهر",
+        taskManagement: "إدارة المهام والمهام الفرعية",
+        newTask: "مهمة جديدة",
+        allTasks: "الكل",
+        filterToday: "اليوم",
+        filterPending: "قيد التنفيذ",
+        filterCompleted: "المكتملة",
+        allCategories: "جميع الفئات",
+        eisenhowerTitle: "مصفوفة أيزنهاور",
+        eisenhowerSubtitle: "حدد الأولويات بالسحب والإفلات أو اللمس.",
+        add: "إضافة",
+        q1Title: "عاجل وهام",
+        q2Title: "هام / غير عاجل",
+        q3Title: "عاجل / غير هام",
+        q4Title: "غير عاجل / غير هام",
+        monthlyGoals: "الأهداف الشهرية",
+        goalsSubtitle: "اربط المستهدفات بفرص تحقيقها.",
+        newGoal: "هدف جديد",
+        habitTracker: "متابع العادات",
+        habitsSubtitle: "شبكة الخريطة الحرارية لمدة 30 يومًا.",
+        newHabit: "عادة جديدة",
+        pomodoroTimer: "مؤقت بومودورو",
+        pomoModeWork: "عمل (25 د)",
+        pomoModeShort: "استراحة قصيرة (5 د)",
+        pomoModeLong: "استراحة طويلة (15 د)",
+        visionBoardTitle: "لوحة الرؤية التفاعلية",
+        visionBoardSubtitle: "رتب بطاقاتك بحرية كاملة.",
+        addVisionCard: "بطاقة / صورة",
+        statsTitle: "الإحصائيات والأداء",
+        taskBreakdown: "توزيع المهام",
+        completedLast7Days: "المهام المكتملة (آخر 7 أيام)",
+        settingsTitle: "الإعدادات والبيانات",
+        settingsSubtitle: "إدارة الفئات والنسخ الاحتياطي والتصدير.",
+        categories: "الفئات",
+        new: "جديد",
+        exportImport: "التصدير والاستيراد",
+        zenFormat: "صيغة .ZEN",
+        csvExport: "تصدير CSV",
+        print: "طباعة",
+        importBackupLabel: "استيراد ملف (.json / .zen)",
+        browse: "تصفح...",
+        autoBackupsTitle: "النسخ الاحتياطي التلقائي SHA-256",
+        title: "العنوان",
+        category: "الفئة",
+        priority: "الأولوية",
+        dueDate: "تاريخ الاستحقاق",
+        recurrence: "التكرار",
+        subtasksLabel: "المهام الفرعية (واحدة في كل سطر)",
+        cancel: "إلغاء",
+        save: "حفظ",
+        date: "التاريخ",
+        startTime: "وقت البدء",
+        endTime: "وقت الانتهاء",
+        target: "المستهدف",
+        month: "الشهر",
+        create: "إنشاء",
+        name: "الاسم",
+        addToVisionBoard: "إضافة إلى لوحة الرؤية",
+        titleNote: "العنوان / ملاحظة",
+        imageUrl: "رابط الصورة (اختياري)",
+        newCategory: "فئة جديدة",
+        color: "اللون",
+        iconEmoji: "الأيقونة (تعبيرية)",
+        recNone: "بدون",
+        recDaily: "يومي",
+        recWeekly: "أسبوعي",
+        recMonthly: "شهري",
+        noEventsToday: "لا توجد أحداث مجدولة اليوم.",
+        noTasksFound: "لم يتم العثور على مهام.",
+        noGoalsFound: "لم يتم إنشاء أهداف.",
+        noHabitsFound: "لا توجد عادات مسجلة.",
+        emptyCanvas: "اللوحة فارغة. انقر على \"+ بطاقة / صورة\".",
+        noData: "لا توجد بيانات",
+        noBackups: "لم يتم إنشاء نسخ احتياطية.",
+        delete: "حذف",
+        restore: "استعادة",
+        progress: "التقدم",
+        plusOneProgress: "+1 تقدم"
+      }
+    };
+
+    let appState = {
+      language: 'fr',
+      theme: 'nuit-violette',
+      categories: [
+        { id: 'cat-1', name: 'Travail', color: '#8b5cf6', icon: '💼' },
+        { id: 'cat-2', name: 'Personnel', color: '#10b981', icon: '👤' },
+        { id: 'cat-3', name: 'Santé', color: '#f43f5e', icon: '🏃' },
+        { id: 'cat-4', name: 'Apprentissage', color: '#3b82f6', icon: '📚' }
+      ],
+      tasks: [],
+      events: [],
+      goals: [],
+      habits: [],
+      visionItems: [],
+      backups: []
+    };
+
+    let agendaCurrentDate = new Date();
+    let agendaView = 'week';
+    let currentTaskFilter = 'all';
+
+    let pomodoro = {
+      timeLeft: 1500,
+      totalDuration: 1500,
+      isRunning: false,
+      mode: 'work',
+      timerId: null
+    };
+
+    const DB_NAME = 'ZenPlannerDB';
+    let db = null;
+
+    function getTranslation(key) {
+      const lang = appState.language || 'fr';
+      return (translations[lang] && translations[lang][key]) || translations['fr'][key] || key;
+    }
+
+    function applyTranslations() {
+      const lang = appState.language || 'fr';
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      const searchInput = document.getElementById('global-search-input');
+      if (searchInput) searchInput.placeholder = getTranslation('searchPlaceholder');
+
+      renderDashboard();
+      renderAgenda();
+      renderTasks();
+      renderEisenhower();
+      renderGoals();
+      renderHabits();
+      renderVisionBoard();
+      renderStats();
+      renderSettings();
+      updatePomoModeUI();
+      updatePomodoroDisplay();
+    }
+
+    function switchLanguage(langKey) {
+      appState.language = langKey;
+      document.getElementById('langSelect').value = langKey;
+      saveStateToStorage();
+      applyTranslations();
+    }
+
+    function getLocaleCode() {
+      const localeMap = { fr: 'fr-FR', en: 'en-US', es: 'es-ES', ar: 'ar-SA' };
+      return localeMap[appState.language] || 'fr-FR';
+    }
+
+    function escapeHTML(str) {
+      if (typeof str !== 'string') return str;
+      return str.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
+    }
+
+    function getLocalYYYYMMDD(d = new Date()) {
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    async function computeSHA256(text) {
+      const data = new TextEncoder().encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function playBeepSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.3);
+      } catch(e){}
+    }
+
+    function initStorage() {
+      return new Promise((resolve) => {
+        const request = indexedDB.open(DB_NAME, 1);
+        request.onupgradeneeded = (e) => {
+          db = e.target.result;
+          if (!db.objectStoreNames.contains('store')) db.createObjectStore('store');
+        };
+        request.onsuccess = (e) => {
+          db = e.target.result;
+          loadStateFromStorage().then(resolve);
+        };
+        request.onerror = () => { loadStateFromLocalStorage(); resolve(); };
+      });
+    }
+
+    async function saveStateToStorage() {
+      if (db) {
+        const tx = db.transaction('store', 'readwrite');
+        tx.objectStore('store').put(appState, 'appState');
+      }
+      localStorage.setItem('ZenPlanner_Backup', JSON.stringify(appState));
+      triggerAutoBackup();
+    }
+
+    function loadStateFromStorage() {
+      return new Promise((resolve) => {
+        if (!db) { loadStateFromLocalStorage(); resolve(); return; }
+        const tx = db.transaction('store', 'readonly');
+        const req = tx.objectStore('store').get('appState');
+        req.onsuccess = (e) => {
+          if (e.target.result) appState = { ...appState, ...e.target.result };
+          else loadStateFromLocalStorage();
+          resolve();
+        };
+        req.onerror = () => { loadStateFromLocalStorage(); resolve(); };
+      });
+    }
+
+    function loadStateFromLocalStorage() {
+      const saved = localStorage.getItem('ZenPlanner_Backup');
+      if (saved) { try { appState = { ...appState, ...JSON.parse(saved) }; } catch(e){} }
+    }
+
+    async function triggerAutoBackup() {
+      const stateString = JSON.stringify({
+        tasks: appState.tasks, events: appState.events, goals: appState.goals,
+        habits: appState.habits, categories: appState.categories, visionItems: appState.visionItems
+      });
+
+      const hash = await computeSHA256(stateString);
+      if (!appState.backups) appState.backups = [];
+      if (appState.backups.length > 0 && appState.backups[0].hash === hash) return;
+
+      appState.backups.unshift({
+        id: 'bk-' + Date.now(),
+        timestamp: new Date().toLocaleString(getLocaleCode()),
+        hash: hash,
+        data: JSON.parse(stateString)
+      });
+      if (appState.backups.length > 10) appState.backups.pop();
+    }
+
+    function toggleMobileDrawer() {
+      const drawer = document.getElementById('mobile-drawer');
+      if (drawer) drawer.classList.toggle('hidden');
+    }
+
+    function switchTheme(themeKey) {
+      appState.theme = themeKey;
+      document.documentElement.setAttribute('data-theme', themeKey);
+      document.getElementById('themeSelect').value = themeKey;
+      saveStateToStorage();
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      
+      // Desktop Nav Styling
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('theme-accent-light', 'theme-accent-text', 'font-semibold'));
+      const targetNav = document.getElementById(`nav-${tabId}`);
+      if (targetNav) targetNav.classList.add('theme-accent-light', 'theme-accent-text', 'font-semibold');
+
+      // Bottom Nav Styling (Mobile)
+      document.querySelectorAll('.bnav-btn').forEach(el => el.classList.remove('theme-accent-text'));
+      const targetBNav = document.getElementById(`bnav-${tabId}`);
+      if (targetBNav) targetBNav.classList.add('theme-accent-text');
+
+      const targetView = document.getElementById(`view-${tabId}`);
+      if (targetView) targetView.classList.remove('hidden');
+
+      if (tabId === 'dashboard') renderDashboard();
+      if (tabId === 'agenda') renderAgenda();
+      if (tabId === 'tasks') renderTasks();
+      if (tabId === 'eisenhower') renderEisenhower();
+      if (tabId === 'goals') renderGoals();
+      if (tabId === 'habits') renderHabits();
+      if (tabId === 'vision') renderVisionBoard();
+      if (tabId === 'stats') renderStats();
+      if (tabId === 'settings') renderSettings();
+    }
+
+    function getCategoryById(id) {
+      return appState.categories.find(c => c.id === id) || { name: 'Général', color: 'var(--accent-primary)', icon: '📌' };
+    }
+
+    function populateCategoryDropdowns() {
+      ['task-input-category', 'event-input-category', 'task-cat-filter'].forEach(selectId => {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+        const currentVal = select.value;
+        select.innerHTML = selectId === 'task-cat-filter' ? `<option value="all">${getTranslation('allCategories')}</option>` : '';
+        appState.categories.forEach(cat => {
+          select.innerHTML += `<option value="${cat.id}">${escapeHTML(cat.icon)} ${escapeHTML(cat.name)}</option>`;
+        });
+        select.value = currentVal || (appState.categories[0] ? appState.categories[0].id : '');
+      });
+    }
+
+    function renderDashboard() {
+      const todayStr = getLocalYYYYMMDD();
+      document.getElementById('dash-date').textContent = new Date().toLocaleDateString(getLocaleCode(), {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      });
+
+      const todayTasks = appState.tasks.filter(t => t.date === todayStr);
+      const completedTasks = todayTasks.filter(t => t.completed);
+      document.getElementById('dash-task-count').textContent = `${completedTasks.length} / ${todayTasks.length}`;
+
+      const todayEvents = appState.events.filter(e => e.date === todayStr);
+      document.getElementById('dash-event-count').textContent = todayEvents.length.toString();
+      document.getElementById('dash-goal-count').textContent = appState.goals.length.toString();
+      document.getElementById('dash-habit-streak').textContent = appState.habits.length.toString();
+
+      const timelineContainer = document.getElementById('dash-today-events');
+      if (todayEvents.length === 0) {
+        timelineContainer.innerHTML = `<p class="text-xs theme-text-muted py-6 text-center">${getTranslation('noEventsToday')}</p>`;
+      } else {
+        timelineContainer.innerHTML = todayEvents.map(e => {
+          const cat = getCategoryById(e.categoryId);
+          return `
+            <div class="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-app-bg border theme-border">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: ${cat.color}"></span>
+              <div class="flex-1 min-w-0">
+                <h4 class="text-xs font-semibold truncate">${escapeHTML(e.title)}</h4>
+                <p class="text-[10px] theme-text-muted font-mono">${escapeHTML(e.startTime)} - ${escapeHTML(e.endTime)}</p>
+              </div>
+              <button onclick="deleteEvent('${e.id}')" class="theme-text-muted hover:text-red-500 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+            </div>
+          `;
+        }).join('');
+      }
+      lucide.createIcons();
+    }
+
+    function setAgendaView(view) {
+      agendaView = view;
+      document.querySelectorAll('#view-btn-day, #view-btn-week, #view-btn-month').forEach(btn => {
+        btn.classList.remove('theme-card', 'shadow-xs');
+      });
+      document.getElementById(`view-btn-${view}`).classList.add('theme-card', 'shadow-xs');
+      renderAgenda();
+    }
+
+    function navigateAgenda(direction) {
+      if (agendaView === 'day') agendaCurrentDate.setDate(agendaCurrentDate.getDate() + direction);
+      if (agendaView === 'week') agendaCurrentDate.setDate(agendaCurrentDate.getDate() + (direction * 7));
+      if (agendaView === 'month') agendaCurrentDate.setMonth(agendaCurrentDate.getMonth() + direction);
+      renderAgenda();
+    }
+
+    function setAgendaToday() { agendaCurrentDate = new Date(); renderAgenda(); }
+
+    function renderAgenda() {
+      const container = document.getElementById('agenda-container');
+      const title = document.getElementById('agenda-title');
+      const loc = getLocaleCode();
+
+      if (agendaView === 'day') {
+        const dayStr = getLocalYYYYMMDD(agendaCurrentDate);
+        title.textContent = agendaCurrentDate.toLocaleDateString(loc, { weekday: 'long', day: 'numeric', month: 'long' });
+
+        let html = `<div class="divide-y theme-border">`;
+        for (let hour = 0; hour < 24; hour++) {
+          const timeLabel = `${String(hour).padStart(2, '0')}:00`;
+          const hourEvents = appState.events.filter(e => e.date === dayStr && parseInt(e.startTime.split(':')[0]) === hour);
+
+          html += `
+            <div class="flex min-h-[44px]">
+              <div class="w-14 sm:w-16 p-2 text-[10px] sm:text-[11px] theme-text-muted border-r [dir=rtl]:border-l [dir=rtl]:border-r-0 theme-border text-right [dir=rtl]:text-left font-mono shrink-0">${timeLabel}</div>
+              <div class="flex-1 p-1 space-y-1">
+                ${hourEvents.map(e => {
+                  const cat = getCategoryById(e.categoryId);
+                  return `
+                    <div class="p-1.5 sm:p-2 rounded-lg text-xs font-semibold text-white shadow-xs flex items-center justify-between" style="background-color: ${cat.color}">
+                      <span class="truncate">${escapeHTML(e.title)} (<span class="font-mono">${escapeHTML(e.startTime)} - ${escapeHTML(e.endTime)}</span>)</span>
+                      <button onclick="deleteEvent('${e.id}')" class="text-white/80 hover:text-white ml-1 shrink-0"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+        html += `</div>`;
+        container.innerHTML = html;
+      } else if (agendaView === 'week') {
+        const startOfWeek = new Date(agendaCurrentDate);
+        const dayOfWeek = startOfWeek.getDay();
+        const diff = startOfWeek.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+        startOfWeek.setDate(diff);
+
+        title.textContent = `${startOfWeek.toLocaleDateString(loc, { day: 'numeric', month: 'short' })}`;
+
+        let html = `<div class="grid grid-cols-7 border-b theme-border bg-app-bg text-center text-[10px] sm:text-xs font-semibold py-2">`;
+        const weekDays = [];
+        for (let i = 0; i < 7; i++) {
+          const d = new Date(startOfWeek);
+          d.setDate(d.getDate() + i);
+          weekDays.push(d);
+          html += `<div class="truncate">${d.toLocaleDateString(loc, { weekday: 'short', day: 'numeric' })}</div>`;
+        }
+        html += `</div><div class="grid grid-cols-7 divide-x [dir=rtl]:divide-x-reverse theme-border min-h-[400px]">`;
+
+        weekDays.forEach(dayDate => {
+          const dateStr = getLocalYYYYMMDD(dayDate);
+          const dayEvents = appState.events.filter(e => e.date === dateStr);
+
+          html += `<div class="p-1 sm:p-1.5 space-y-1">`;
+          dayEvents.forEach(e => {
+            const cat = getCategoryById(e.categoryId);
+            html += `
+              <div class="p-1.5 rounded-lg text-[11px] font-medium border shadow-2xs flex items-start justify-between gap-1 overflow-hidden" style="border-color: ${cat.color}; background-color: ${cat.color}15; color: ${cat.color}">
+                <div class="min-w-0">
+                  <div class="font-semibold truncate text-[10px] sm:text-xs">${escapeHTML(e.title)}</div>
+                  <div class="text-[9px] sm:text-[10px] opacity-75 font-mono truncate">${escapeHTML(e.startTime)}</div>
+                </div>
+                <button onclick="deleteEvent('${e.id}')" class="opacity-60 hover:opacity-100 shrink-0"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
+              </div>
+            `;
+          });
+          html += `</div>`;
+        });
+        html += `</div>`;
+        container.innerHTML = html;
+      } else if (agendaView === 'month') {
+        title.textContent = agendaCurrentDate.toLocaleDateString(loc, { month: 'long', year: 'numeric' });
+        const year = agendaCurrentDate.getFullYear();
+        const month = agendaCurrentDate.getMonth();
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+
+        let html = `<div class="grid grid-cols-7 text-center text-[10px] sm:text-xs font-bold py-2 border-b theme-border">
+          <div>Lu</div><div>Ma</div><div>Me</div><div>Je</div><div>Ve</div><div>Sa</div><div>Di</div>
+        </div><div class="grid grid-cols-7 divide-x divide-y [dir=rtl]:divide-x-reverse theme-border">`;
+
+        let startingDay = firstDay.getDay() - 1;
+        if (startingDay === -1) startingDay = 6;
+
+        for (let i = 0; i < startingDay; i++) {
+          html += `<div class="h-16 sm:h-24 bg-app-bg opacity-30"></div>`;
+        }
+
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+          const current = new Date(year, month, day);
+          const dateStr = getLocalYYYYMMDD(current);
+          const dayEvents = appState.events.filter(e => e.date === dateStr);
+
+          html += `
+            <div class="h-16 sm:h-24 p-0.5 sm:p-1 overflow-y-auto">
+              <div class="text-[9px] sm:text-[10px] font-bold theme-text-muted mb-0.5 font-mono">${day}</div>
+              <div class="space-y-0.5">
+                ${dayEvents.map(e => {
+                  const cat = getCategoryById(e.categoryId);
+                  return `
+                    <div class="text-[9px] sm:text-[10px] px-1 py-0.5 rounded flex items-center justify-between text-white" style="background-color:${cat.color}">
+                      <span class="truncate">${escapeHTML(e.title)}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+        html += `</div>`;
+        container.innerHTML = html;
+      }
+      lucide.createIcons();
+    }
+
+    function saveEvent() {
+      const title = document.getElementById('event-input-title').value.trim();
+      if (!title) return;
+
+      appState.events.push({
+        id: 'evt-' + Date.now(),
+        title: title,
+        date: document.getElementById('event-input-date').value || getLocalYYYYMMDD(),
+        categoryId: document.getElementById('event-input-category').value,
+        startTime: document.getElementById('event-input-start').value || '09:00',
+        endTime: document.getElementById('event-input-end').value || '10:00'
+      });
+
+      saveStateToStorage();
+      closeModal('modal-event');
+      renderAgenda();
+      renderDashboard();
+    }
+
+    function deleteEvent(id) {
+      appState.events = appState.events.filter(e => e.id !== id);
+      saveStateToStorage();
+      renderAgenda();
+      renderDashboard();
+    }
+
+    function filterTasks(filter) {
+      currentTaskFilter = filter;
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const container = document.getElementById('tasks-list');
+      const selectedCat = document.getElementById('task-cat-filter').value;
+      const todayStr = getLocalYYYYMMDD();
+
+      let filtered = appState.tasks.filter(t => {
+        if (selectedCat !== 'all' && t.categoryId !== selectedCat) return false;
+        if (currentTaskFilter === 'today') return t.date === todayStr;
+        if (currentTaskFilter === 'pending') return !t.completed;
+        if (currentTaskFilter === 'completed') return t.completed;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<p class="text-xs theme-text-muted py-8 text-center">${getTranslation('noTasksFound')}</p>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(t => {
+        const cat = getCategoryById(t.categoryId);
+        const subtasks = t.subtasks || [];
+        const completedSub = subtasks.filter(s => s.completed).length;
+
+        return `
+          <div class="p-3 sm:p-3.5 theme-card rounded-2xl border theme-border shadow-2xs space-y-2">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <input type="checkbox" ${t.completed ? 'checked' : ''} onchange="toggleTaskComplete('${t.id}')" class="w-4 h-4 rounded theme-accent-text cursor-pointer shrink-0">
+                <div class="min-w-0">
+                  <span class="text-xs font-semibold block truncate ${t.completed ? 'line-through theme-text-muted' : ''}">${escapeHTML(t.title)}</span>
+                  <div class="flex items-center gap-2 mt-0.5">
+                    <span class="text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded theme-accent-light shrink-0">${escapeHTML(t.priority)}</span>
+                    <span class="text-[9px] sm:text-[10px] theme-text-muted font-mono truncate">${t.date || ''}</span>
+                  </div>
+                </div>
+              </div>
+              <button onclick="deleteTask('${t.id}')" class="theme-text-muted hover:text-red-500 p-1 shrink-0"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+            </div>
+
+            ${subtasks.length > 0 ? `
+              <div class="pl-6 [dir=rtl]:pr-6 [dir=rtl]:pl-0 pt-1 space-y-1 border-t theme-border text-xs">
+                <p class="text-[10px] theme-text-muted">${getTranslation('subtasksLabel')} (${completedSub}/${subtasks.length}):</p>
+                ${subtasks.map((st, i) => `
+                  <div class="flex items-center gap-2">
+                    <input type="checkbox" ${st.completed ? 'checked' : ''} onchange="toggleSubtask('${t.id}', ${i})" class="w-3 h-3 rounded theme-accent-text">
+                    <span class="text-xs ${st.completed ? 'line-through theme-text-muted' : ''}">${escapeHTML(st.title)}</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function saveTask() {
+      const title = document.getElementById('task-input-title').value.trim();
+      if (!title) return;
+
+      const subtasksRaw = document.getElementById('task-input-subtasks').value.split('\n').filter(s => s.trim());
+      const subtasks = subtasksRaw.map(s => ({ title: s.trim(), completed: false }));
+
+      appState.tasks.push({
+        id: 'task-' + Date.now(),
+        title: title,
+        categoryId: document.getElementById('task-input-category').value,
+        priority: document.getElementById('task-input-priority').value,
+        date: document.getElementById('task-input-date').value || getLocalYYYYMMDD(),
+        recurrence: document.getElementById('task-input-recurrence').value,
+        matrixQuadrant: document.getElementById('task-input-priority').value === 'P1' ? 'Q1' : 'Q2',
+        subtasks: subtasks,
+        completed: false
+      });
+
+      saveStateToStorage();
+      closeModal('modal-task');
+      renderTasks();
+      renderDashboard();
+    }
+
+    function toggleTaskComplete(id) {
+      const task = appState.tasks.find(t => t.id === id);
+      if (task) {
+        task.completed = !task.completed;
+        saveStateToStorage();
+        renderTasks();
+        renderDashboard();
+      }
+    }
+
+    function toggleSubtask(taskId, subIndex) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (task && task.subtasks && task.subtasks[subIndex]) {
+        task.subtasks[subIndex].completed = !task.subtasks[subIndex].completed;
+        saveStateToStorage();
+        renderTasks();
+      }
+    }
+
+    function deleteTask(id) {
+      appState.tasks = appState.tasks.filter(t => t.id !== id);
+      saveStateToStorage();
+      renderTasks();
+      renderDashboard();
+    }
+
+    function renderEisenhower() {
+      ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
+        const quadContainer = document.getElementById(`matrix-${q.toLowerCase()}`);
+        const tasks = appState.tasks.filter(t => t.matrixQuadrant === q || (!t.matrixQuadrant && q === 'Q2'));
+        document.getElementById(`${q.toLowerCase()}-count`).textContent = tasks.length.toString();
+
+        quadContainer.innerHTML = tasks.map(t => {
+          const cat = getCategoryById(t.categoryId);
+          return `
+            <div draggable="true" ondragstart="dragTask(event, '${t.id}')" class="p-2.5 theme-card rounded-xl border theme-border shadow-2xs cursor-grab active:cursor-grabbing space-y-1">
+              <div class="flex items-center justify-between gap-1">
+                <span class="text-xs font-semibold truncate">${escapeHTML(t.title)}</span>
+                <select onchange="moveTaskQuadrant('${t.id}', this.value)" class="text-[9px] bg-app-bg border theme-border rounded px-1 py-0.5 font-mono">
+                  <option value="Q1" ${q === 'Q1' ? 'selected' : ''}>Q1</option>
+                  <option value="Q2" ${q === 'Q2' ? 'selected' : ''}>Q2</option>
+                  <option value="Q3" ${q === 'Q3' ? 'selected' : ''}>Q3</option>
+                  <option value="Q4" ${q === 'Q4' ? 'selected' : ''}>Q4</option>
+                </select>
+              </div>
+            </div>
+          `;
+        }).join('');
+      });
+    }
+
+    function moveTaskQuadrant(taskId, quadrant) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (task) {
+        task.matrixQuadrant = quadrant;
+        saveStateToStorage();
+        renderEisenhower();
+      }
+    }
+
+    function dragTask(ev, id) { ev.dataTransfer.setData("text/plain", id); }
+    function allowDrop(ev) { ev.preventDefault(); }
+    function dropTask(ev, quadrant) {
+      ev.preventDefault();
+      const id = ev.dataTransfer.getData("text/plain");
+      moveTaskQuadrant(id, quadrant);
+    }
+
+    function renderGoals() {
+      const container = document.getElementById('goals-list');
+      if (appState.goals.length === 0) {
+        container.innerHTML = `<p class="text-xs theme-text-muted py-8 text-center col-span-2">${getTranslation('noGoalsFound')}</p>`;
+        return;
+      }
+      container.innerHTML = appState.goals.map(g => {
+        const progress = Math.min(100, Math.round((g.current / g.target) * 100));
+        return `
+          <div class="p-3.5 sm:p-4 theme-card rounded-2xl border theme-border space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs sm:text-sm font-bold truncate">${escapeHTML(g.title)}</h4>
+              <div class="flex items-center gap-2">
+                <span class="text-xs theme-text-muted font-mono">${escapeHTML(g.month)}</span>
+                <button onclick="deleteGoal('${g.id}')" class="theme-text-muted hover:text-red-500"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-medium">
+                <span>${getTranslation('progress')}</span>
+                <span class="font-mono">${g.current} / ${g.target} (${progress}%)</span>
+              </div>
+              <div class="w-full h-2 bg-app-bg rounded-full overflow-hidden border theme-border">
+                <div class="h-full theme-accent-bg transition-all duration-300" style="width: ${progress}%"></div>
+              </div>
+            </div>
+            <div class="flex justify-end gap-2">
+              <button onclick="updateGoalProgress('${g.id}', 1)" class="px-2.5 py-1 theme-accent-light rounded-lg text-xs font-semibold">${getTranslation('plusOneProgress')}</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function saveGoal() {
+      const title = document.getElementById('goal-input-title').value.trim();
+      if (!title) return;
+      appState.goals.push({
+        id: 'goal-' + Date.now(),
+        title: title,
+        target: parseInt(document.getElementById('goal-input-target').value) || 10,
+        current: 0,
+        month: document.getElementById('goal-input-month').value || getLocalYYYYMMDD().slice(0, 7)
+      });
+      saveStateToStorage();
+      closeModal('modal-goal');
+      renderGoals();
+      renderDashboard();
+    }
+
+    function updateGoalProgress(id, amount) {
+      const goal = appState.goals.find(g => g.id === id);
+      if (goal) {
+        goal.current = Math.min(goal.target, goal.current + amount);
+        saveStateToStorage();
+        renderGoals();
+      }
+    }
+
+    function deleteGoal(id) {
+      appState.goals = appState.goals.filter(g => g.id !== id);
+      saveStateToStorage();
+      renderGoals();
+      renderDashboard();
+    }
+
+    function renderHabits() {
+      const container = document.getElementById('habits-list');
+      if (appState.habits.length === 0) {
+        container.innerHTML = `<p class="text-xs theme-text-muted py-8 text-center">${getTranslation('noHabitsFound')}</p>`;
+        return;
+      }
+
+      container.innerHTML = appState.habits.map(h => {
+        let heatmap = '<div class="flex gap-1 overflow-x-auto py-2">';
+        for (let i = 29; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(d.getDate() - i);
+          const dateStr = getLocalYYYYMMDD(d);
+          const checked = h.history && h.history.includes(dateStr);
+          heatmap += `<div onclick="toggleHabitDay('${h.id}', '${dateStr}')" class="heatmap-square cursor-pointer shrink-0 ${checked ? 'theme-accent-bg' : 'bg-app-bg border theme-border'}" title="${dateStr}"></div>`;
+        }
+        heatmap += '</div>';
+
+        return `
+          <div class="p-3.5 sm:p-4 theme-card rounded-2xl border theme-border space-y-2">
+            <div class="flex items-center justify-between">
+              <h4 class="text-xs font-bold truncate">${escapeHTML(h.title)}</h4>
+              <button onclick="deleteHabit('${h.id}')" class="theme-text-muted hover:text-red-500"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+            </div>
+            ${heatmap}
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function saveHabit() {
+      const title = document.getElementById('habit-input-title').value.trim();
+      if (!title) return;
+      appState.habits.push({ id: 'habit-' + Date.now(), title: title, history: [] });
+      saveStateToStorage();
+      closeModal('modal-habit');
+      renderHabits();
+    }
+
+    function toggleHabitDay(id, dateStr) {
+      const habit = appState.habits.find(h => h.id === id);
+      if (habit) {
+        if (!habit.history) habit.history = [];
+        const idx = habit.history.indexOf(dateStr);
+        if (idx >= 0) habit.history.splice(idx, 1);
+        else habit.history.push(dateStr);
+        saveStateToStorage();
+        renderHabits();
+      }
+    }
+
+    function deleteHabit(id) {
+      appState.habits = appState.habits.filter(h => h.id !== id);
+      saveStateToStorage();
+      renderHabits();
+    }
+
+    function initPomodoroState() {
+      const savedPomo = localStorage.getItem('ZenPlanner_PomoState');
+      if (savedPomo) {
+        try {
+          const parsed = JSON.parse(savedPomo);
+          pomodoro.timeLeft = parsed.timeLeft;
+          pomodoro.totalDuration = parsed.totalDuration;
+          pomodoro.mode = parsed.mode;
+        } catch(e){}
+      }
+      updatePomodoroDisplay();
+      updatePomoModeUI();
+    }
+
+    function savePomodoroState() {
+      localStorage.setItem('ZenPlanner_PomoState', JSON.stringify({
+        timeLeft: pomodoro.timeLeft,
+        totalDuration: pomodoro.totalDuration,
+        mode: pomodoro.mode
+      }));
+    }
+
+    function updatePomoModeUI() {
+      const modes = ['work', 'short', 'long'];
+      modes.forEach(m => {
+        const btn = document.getElementById(`pomo-mode-${m}`);
+        if (!btn) return;
+        const targetMode = m === 'work' ? 'work' : (m === 'short' ? 'shortBreak' : 'longBreak');
+        if (pomodoro.mode === targetMode) {
+          btn.className = "px-3.5 py-2 rounded-xl text-xs font-semibold theme-accent-bg transition shadow-sm";
+        } else {
+          btn.className = "px-3.5 py-2 rounded-xl text-xs font-semibold bg-app-bg border theme-border theme-text-muted transition hover:opacity-80";
+        }
+      });
+
+      const labelMap = { work: getTranslation('pomoWork'), shortBreak: getTranslation('pomoShort'), longBreak: getTranslation('pomoLong') };
+      
+      document.getElementById('dash-pomo-label').textContent = labelMap[pomodoro.mode] || getTranslation('pomoWork');
+      document.getElementById('main-pomo-label').textContent = labelMap[pomodoro.mode] || getTranslation('pomoWork');
+      document.getElementById('dash-pomo-status').textContent = pomodoro.isRunning ? getTranslation('pomoRunning') : getTranslation('pomoReady');
+    }
+
+    function updatePomodoroDisplay() {
+      const mins = String(Math.floor(pomodoro.timeLeft / 60)).padStart(2, '0');
+      const secs = String(pomodoro.timeLeft % 60).padStart(2, '0');
+      const timeStr = `${mins}:${secs}`;
+
+      document.getElementById('dash-pomo-timer').textContent = timeStr;
+      document.getElementById('main-pomo-timer').textContent = timeStr;
+
+      const mainBtn = document.getElementById('main-pomo-start-btn');
+      const dashBtn = document.getElementById('dash-pomo-btn');
+
+      if (pomodoro.isRunning) {
+        if (mainBtn) mainBtn.innerHTML = `<i data-lucide="pause" class="w-5 h-5"></i> <span>${getTranslation('pause')}</span>`;
+        if (dashBtn) dashBtn.textContent = getTranslation('pause');
+      } else {
+        if (mainBtn) mainBtn.innerHTML = `<i data-lucide="play" class="w-5 h-5"></i> <span>${getTranslation('start')}</span>`;
+        if (dashBtn) dashBtn.textContent = getTranslation('start');
+      }
+      lucide.createIcons();
+    }
+
+    function togglePomodoro() {
+      if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+        Notification.requestPermission();
+      }
+
+      if (pomodoro.isRunning) {
+        clearInterval(pomodoro.timerId);
+        pomodoro.isRunning = false;
+        savePomodoroState();
+        updatePomodoroDisplay();
+        updatePomoModeUI();
+      } else {
+        pomodoro.isRunning = true;
+        updatePomoModeUI();
+        updatePomodoroDisplay();
+
+        pomodoro.timerId = setInterval(() => {
+          if (pomodoro.timeLeft > 0) {
+            pomodoro.timeLeft--;
+            savePomodoroState();
+            updatePomodoroDisplay();
+          } else {
+            clearInterval(pomodoro.timerId);
+            pomodoro.isRunning = false;
+            playBeepSound();
+            if (Notification.permission === 'granted') {
+              new Notification("ZenPlanner Pro", { body: getTranslation('pomodoroTimer') });
+            }
+            alert(getTranslation('pomodoroTimer'));
+            resetPomodoro();
+          }
+        }, 1000);
+      }
+    }
+
+    function resetPomodoro() {
+      clearInterval(pomodoro.timerId);
+      pomodoro.isRunning = false;
+      pomodoro.timeLeft = pomodoro.totalDuration;
+      savePomodoroState();
+      updatePomodoroDisplay();
+      updatePomoModeUI();
+    }
+
+    function setPomoMode(mode) {
+      pomodoro.mode = mode;
+      pomodoro.totalDuration = mode === 'work' ? 1500 : (mode === 'shortBreak' ? 300 : 900);
+      resetPomodoro();
+    }
+
+    function renderVisionBoard() {
+      const canvas = document.getElementById('vision-board-canvas');
+      if (appState.visionItems.length === 0) {
+        canvas.innerHTML = `<div class="flex items-center justify-center h-full text-xs theme-text-muted px-4 text-center">${getTranslation('emptyCanvas')}</div>`;
+        return;
+      }
+
+      canvas.innerHTML = appState.visionItems.map(item => `
+        <div id="${item.id}" style="left: ${item.x || 15}px; top: ${item.y || 15}px; width: ${item.w || 180}px;" class="vision-item absolute theme-card p-2.5 sm:p-3 rounded-2xl border theme-border shadow-lg cursor-move space-y-2">
+          ${item.imageUrl ? `<img src="${escapeHTML(item.imageUrl)}" class="w-full h-28 sm:h-32 object-cover rounded-xl pointer-events-none">` : ''}
+          <p class="text-xs font-medium truncate">${escapeHTML(item.title)}</p>
+          <div class="flex justify-end">
+            <button onclick="deleteVisionItem('${item.id}')" class="text-[10px] text-red-500 hover:underline">${getTranslation('delete')}</button>
+          </div>
+        </div>
+      `).join('');
+
+      appState.visionItems.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (!el) return;
+        let isDragging = false, startX, startY, initialLeft, initialTop;
+
+        el.addEventListener('pointerdown', (e) => {
+          if (e.target.tagName === 'BUTTON') return;
+          isDragging = true; startX = e.clientX; startY = e.clientY;
+          initialLeft = el.offsetLeft; initialTop = el.offsetTop;
+          el.setPointerCapture(e.pointerId);
+        });
+
+        el.addEventListener('pointermove', (e) => {
+          if (!isDragging) return;
+          el.style.left = `${initialLeft + (e.clientX - startX)}px`;
+          el.style.top = `${initialTop + (e.clientY - startY)}px`;
+        });
+
+        el.addEventListener('pointerup', () => {
+          if (!isDragging) return;
+          isDragging = false;
+          item.x = el.offsetLeft; item.y = el.offsetTop;
+          saveStateToStorage();
+        });
+      });
+    }
+
+    function saveVisionItem() {
+      const title = document.getElementById('vision-input-title').value.trim();
+      const imageUrl = document.getElementById('vision-input-image').value.trim();
+      if (!title && !imageUrl) return;
+
+      appState.visionItems.push({
+        id: 'vis-' + Date.now(), title: title, imageUrl: imageUrl,
+        x: 20 + Math.random() * 40, y: 20 + Math.random() * 40, w: 180
+      });
+
+      saveStateToStorage();
+      closeModal('modal-vision');
+      renderVisionBoard();
+    }
+
+    function deleteVisionItem(id) {
+      appState.visionItems = appState.visionItems.filter(v => v.id !== id);
+      saveStateToStorage();
+      renderVisionBoard();
+    }
+
+    function renderStats() {
+      const donutSvg = document.getElementById('stats-donut-svg');
+      const legend = document.getElementById('stats-donut-legend');
+      
+      const catCounts = {};
+      appState.tasks.forEach(t => { catCounts[t.categoryId] = (catCounts[t.categoryId] || 0) + 1; });
+      const total = Object.values(catCounts).reduce((a, b) => a + b, 0);
+
+      if (total === 0) {
+        donutSvg.innerHTML = `<circle cx="50" cy="50" r="35" fill="none" stroke="var(--border-color)" stroke-width="15"/>`;
+        legend.innerHTML = `<p class="col-span-2 text-center theme-text-muted">${getTranslation('noData')}</p>`;
+      } else {
+        let cumulativePercent = 0, svgContent = '', legendContent = '';
+        Object.entries(catCounts).forEach(([catId, count]) => {
+          const cat = getCategoryById(catId);
+          const percent = count / total;
+          const strokeDasharray = `${percent * 220} 220`;
+          const strokeDashoffset = -cumulativePercent * 220;
+
+          svgContent += `<circle cx="50" cy="50" r="35" fill="none" stroke="${cat.color}" stroke-width="15" stroke-dasharray="${strokeDasharray}" stroke-dashoffset="${strokeDashoffset}" transform="rotate(-90 50 50)" />`;
+          legendContent += `<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color:${cat.color}"></span><span class="truncate">${escapeHTML(cat.name)}: <strong class="font-mono">${Math.round(percent * 100)}%</strong></span></div>`;
+          cumulativePercent += percent;
+        });
+        donutSvg.innerHTML = svgContent;
+        legend.innerHTML = legendContent;
+      }
+
+      const barContainer = document.getElementById('stats-bars-container');
+      let barHtml = '';
+      const loc = getLocaleCode();
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(); d.setDate(d.getDate() - i);
+        const dateStr = getLocalYYYYMMDD(d);
+        const dayTasks = appState.tasks.filter(t => t.date === dateStr && t.completed).length;
+        const barHeight = Math.min(100, dayTasks * 20);
+
+        barHtml += `
+          <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+            <span class="text-[9px] sm:text-[10px] font-bold theme-accent-text font-mono">${dayTasks}</span>
+            <div class="w-full bg-app-bg rounded-t-lg transition-all duration-500 overflow-hidden border theme-border" style="height: ${Math.max(8, barHeight)}%">
+              <div class="w-full h-full theme-accent-bg"></div>
+            </div>
+            <span class="text-[9px] sm:text-[10px] theme-text-muted font-medium truncate">${d.toLocaleDateString(loc, { weekday: 'short' })}</span>
+          </div>
+        `;
+      }
+      barContainer.innerHTML = barHtml;
+    }
+
+    function renderSettings() {
+      const catList = document.getElementById('settings-categories-list');
+      catList.innerHTML = appState.categories.map(c => `
+        <div class="flex items-center justify-between p-2.5 bg-app-bg rounded-xl border theme-border">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="w-3 h-3 rounded-full shrink-0" style="background-color: ${c.color}"></span>
+            <span class="text-xs font-semibold truncate">${escapeHTML(c.icon)} ${escapeHTML(c.name)}</span>
+          </div>
+          <button onclick="deleteCategory('${c.id}')" class="theme-text-muted hover:text-red-500 text-xs shrink-0"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+        </div>
+      `).join('');
+
+      const backupList = document.getElementById('settings-backups-list');
+      if (!appState.backups || appState.backups.length === 0) {
+        backupList.innerHTML = `<p class="theme-text-muted py-2">${getTranslation('noBackups')}</p>`;
+      } else {
+        backupList.innerHTML = appState.backups.map(b => `
+          <div class="flex items-center justify-between p-2.5 bg-app-bg rounded-xl border theme-border gap-2">
+            <div class="min-w-0">
+              <p class="font-bold truncate">${escapeHTML(b.timestamp)}</p>
+              <p class="text-[9px] font-mono theme-text-muted truncate">SHA256: ${escapeHTML(b.hash.substring(0, 16))}...</p>
+            </div>
+            <button onclick="restoreBackup('${b.id}')" class="px-2.5 py-1 theme-accent-light rounded-lg font-semibold hover:opacity-80 transition shrink-0">${getTranslation('restore')}</button>
+          </div>
+        `).join('');
+      }
+      lucide.createIcons();
+    }
+
+    function saveCategory() {
+      const name = document.getElementById('cat-input-name').value.trim();
+      if (!name) return;
+      appState.categories.push({
+        id: 'cat-' + Date.now(), name: name,
+        color: document.getElementById('cat-input-color').value,
+        icon: document.getElementById('cat-input-icon').value || '📌'
+      });
+      saveStateToStorage();
+      closeModal('modal-category');
+      populateCategoryDropdowns();
+      renderSettings();
+    }
+
+    function deleteCategory(id) {
+      if (appState.categories.length <= 1) { alert("Conservez au moins 1 catégorie."); return; }
+      appState.categories = appState.categories.filter(c => c.id !== id);
+      saveStateToStorage();
+      populateCategoryDropdowns();
+      renderSettings();
+    }
+
+    function restoreBackup(backupId) {
+      if (!confirm("Restaurer cette sauvegarde ?")) return;
+      const bk = appState.backups.find(b => b.id === backupId);
+      if (bk) {
+        appState = { ...appState, ...bk.data };
+        saveStateToStorage();
+        location.reload();
+      }
+    }
+
+    function exportData(type) {
+      const dataStr = JSON.stringify(appState, null, 2);
+      if (type === 'json') downloadFile(dataStr, 'ZenPlanner_Backup.json', 'application/json');
+      else if (type === 'zen') downloadFile(btoa(unescape(encodeURIComponent(dataStr))), 'ZenPlanner_Backup.zen', 'text/plain');
+      else if (type === 'xlsx') {
+        let csv = 'Type,Titre,Catégorie,Date\n';
+        appState.tasks.forEach(t => { csv += `Tâche,"${escapeHTML(t.title)}","${escapeHTML(getCategoryById(t.categoryId).name)}","${t.date}"\n`; });
+        downloadFile(csv, 'ZenPlanner_Export.csv', 'text/csv');
+      }
+    }
+
+    function downloadFile(content, fileName, contentType) {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([content], { type: contentType }));
+      a.download = fileName;
+      a.click();
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          let content = e.target.result;
+          if (file.name.endsWith('.zen')) content = decodeURIComponent(escape(atob(content)));
+          if (confirm("Importer et remplacer l'état actuel ?")) {
+            appState = { ...appState, ...JSON.parse(content) };
+            saveStateToStorage();
+            location.reload();
+          }
+        } catch(err) { alert("Fichier de sauvegarde invalide."); }
+      };
+      reader.readAsText(file);
+    }
+
+    function openSearchModal() {
+      document.getElementById('modal-search').classList.remove('hidden');
+      document.getElementById('global-search-input').focus();
+    }
+
+    function performGlobalSearch(query) {
+      const container = document.getElementById('global-search-results');
+      if (!query.trim()) { container.innerHTML = `<p class="text-center theme-text-muted py-6">${getTranslation('searchPlaceholder')}</p>`; return; }
+
+      const q = query.toLowerCase();
+      let results = [];
+
+      appState.tasks.filter(t => t.title.toLowerCase().includes(q)).forEach(t => {
+        results.push(`<div class="p-2 hover:bg-app-bg rounded-lg flex justify-between"><span>📋 Task: ${escapeHTML(t.title)}</span><span class="theme-text-muted font-mono">${t.date}</span></div>`);
+      });
+      appState.events.filter(e => e.title.toLowerCase().includes(q)).forEach(e => {
+        results.push(`<div class="p-2 hover:bg-app-bg rounded-lg flex justify-between"><span>📅 Event: ${escapeHTML(e.title)}</span><span class="theme-text-muted font-mono">${e.date}</span></div>`);
+      });
+      appState.habits.filter(h => h.title.toLowerCase().includes(q)).forEach(h => {
+        results.push(`<div class="p-2 hover:bg-app-bg rounded-lg flex justify-between"><span>🔥 Habit: ${escapeHTML(h.title)}</span><span class="theme-text-muted">Actif</span></div>`);
+      });
+      appState.goals.filter(g => g.title.toLowerCase().includes(q)).forEach(g => {
+        results.push(`<div class="p-2 hover:bg-app-bg rounded-lg flex justify-between"><span>🎯 Goal: ${escapeHTML(g.title)}</span><span class="theme-text-muted font-mono">${g.month}</span></div>`);
+      });
+      appState.visionItems.filter(v => v.title && v.title.toLowerCase().includes(q)).forEach(v => {
+        results.push(`<div class="p-2 hover:bg-app-bg rounded-lg flex justify-between"><span>🖼️ Vision: ${escapeHTML(v.title)}</span><span class="theme-text-muted">Canvas</span></div>`);
+      });
+
+      container.innerHTML = results.length > 0 ? results.join('') : `<p class="text-center theme-text-muted py-6">Aucun résultat trouvé.</p>`;
+    }
+
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearchModal(); }
+      if (e.key === 'Escape') {
+        ['modal-search', 'modal-task', 'modal-event', 'modal-goal', 'modal-habit', 'modal-vision', 'modal-category'].forEach(closeModal);
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      await initStorage();
+      
+      if (appState.language) {
+        document.getElementById('langSelect').value = appState.language;
+      } else {
+        appState.language = 'fr';
+      }
+
+      if (appState.theme) {
+        switchTheme(appState.theme);
+      } else {
+        switchTheme('nuit-violette');
+      }
+
+      initPomodoroState();
+      populateCategoryDropdowns();
+      applyTranslations();
+      switchTab('dashboard');
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
