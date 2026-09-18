@@ -1,0 +1,18 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "ZenPlanner Pro",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "ZenPlanner",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "id": "com.zenplanner.app",
+  "lang": "fr",
+  "categories": [
+    "lifestyle",
+    "productivity",
+    "utilities"
+  ]
+}
